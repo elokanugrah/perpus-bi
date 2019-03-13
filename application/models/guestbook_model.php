@@ -2,7 +2,7 @@
 	/**
 	* 
 	*/
-	class guestbook_model extends CI_Model
+	class Guestbook_model extends CI_Model
 	{
 		public $nama_table	='guestbook';
 

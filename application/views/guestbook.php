@@ -43,7 +43,7 @@
 }
 </style>
 <div class="second_panel">
-    <form role="form" action="<?php echo site_url('Guest/register_action');?>" method="post">
+    <form role="form" action="<?php echo site_url('GuestBook/register_action');?>" method="post">
       <div class="form-group has-feedback">
           <input type="text" name="id_number" class="form-control" placeholder="Nomor identitas Pegawai/Pelajar" value="<?php echo $this->session->flashdata('id_number'); ?>" required>
           <span class="glyphicon glyphicon-credit-card form-control-feedback"></span>

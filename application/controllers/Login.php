@@ -8,7 +8,7 @@ class Login extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('login_model');
+		$this->load->model('Login_model');
 	}
 
 	public function index()
@@ -24,7 +24,7 @@ class Login extends CI_Controller
 		}
 		else
 		{
-			$cek_uname=$this->login_model->getUserByUname(
+			$cek_uname=$this->Login_model->getUserByUname(
 				$this->input->post('username')
 				);
 			if(!empty($cek_uname))
