@@ -1,4 +1,4 @@
-<?php $this->load->view('headerfooter/header_dashboard'); ?>
+<?php $this->load->view('headerfooter/header_guest'); ?>
 
 <body class="hold-transition login-page">
     <div class="login-box">
