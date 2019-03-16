@@ -17,11 +17,30 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
+
+        $dates = date("Y-m-d", strtotime('-7 days')).' - '.date("Y-m-d");
         $guestbook=$this->Guestbook_model->data_yearandcount();
-        $data=array(
-            'data_guestbook'  => $guestbook
-        );
-        $this->load->view('admin/dashboard',$data);
+        $guestbookoccupation=$this->Guestbook_model->data_occupation($dates);
+        if(!$this->input->post())
+        {
+            $data=array(
+                'data_guestbook'  => $guestbook,
+                'data_guestbookoccuptaion'  => $guestbookoccupation,
+                'date'  => $dates
+            );
+            $this->load->view('admin/dashboard',$data);
+        }
+        else
+        {
+            $guestbookoccupations=$this->Guestbook_model->data_occupation($this->input->post('date'));
+            $data=array(
+                'data_guestbook'  => $guestbook,
+                'data_guestbookoccuptaion'  => $guestbookoccupations,
+                'date'  => $this->input->post('date')
+            );
+            $this->load->view('admin/dashboard',$data);
+        }
+        
     } 
 }
 
