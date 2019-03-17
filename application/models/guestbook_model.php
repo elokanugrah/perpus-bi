@@ -18,18 +18,18 @@
 
 		function data_yearandcount()
 		{
-			$this->db->select("YEAR(date) AS year, COUNT(guestbook_id) AS total");
+			$this->db->select("YEAR(date) AS year, MAX(MONTH(date)) AS max_month, COUNT(guestbook_id) AS total");
 			$this->db->from($this->nama_table);
 			$this->db->group_by('YEAR(date)');
 			return $this->db->get()->result();
 		}
 
-		function data_monthandcount($yr)
+		function data_monthandcount($yr, $mt)
 		{
-			$this->db->select("date, YEAR(date) AS year, MONTH(date) AS month, SUBSTRING('Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec ', (MONTH(date) * 4)- 3, 3) AS month_name, COUNT(guestbook_id) AS total");
+			$this->db->select("date, YEAR(date) AS year, MONTH(date) AS month, SUBSTRING('Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec ', (MONTH(date) * 4)- 3, 3) AS month_name, CASE WHEN COUNT(1) > 0 THEN COUNT(guestbook_id) ELSE 0 END AS total");
 			$this->db->from($this->nama_table);
 			$this->db->where('YEAR(date)',$yr);
-			$this->db->group_by('MONTH(date)');
+			$this->db->where('MONTH(date)',$mt);
 			return $this->db->get()->result();
 		}
 

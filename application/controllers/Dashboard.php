@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller
     public function index()
     {
 
-        $dates = date("Y-m-d", strtotime('-7 days')).' - '.date("Y-m-d");
+        $dates = date("d-M-Y", strtotime('-6 days')).' - '.date("d-M-Y");
         $guestbook=$this->Guestbook_model->data_yearandcount();
         $guestbookoccupation=$this->Guestbook_model->data_occupation($dates);
         if(!$this->input->post())
@@ -32,16 +32,19 @@ class Dashboard extends CI_Controller
         }
         else
         {
-            $guestbookoccupations=$this->Guestbook_model->data_occupation($this->input->post('date'));
+            $start = date("Y-m-d", strtotime(substr($this->input->post('date'), 0, 11)));
+            $end = date("Y-m-d", strtotime(substr($this->input->post('date'), 14, 11)));
+            $guestbookoccupations=$this->Guestbook_model->data_occupation($start.' - '.$end);
             $data=array(
                 'data_guestbook'  => $guestbook,
                 'data_guestbookoccuptaion'  => $guestbookoccupations,
-                'date'  => $this->input->post('date')
+                'dates'  => $start.' - '.$end,
+                'date' => $this->input->post('date')
             );
             $this->load->view('admin/dashboard',$data);
         }
         
-    } 
+    }
 }
 
 ?>

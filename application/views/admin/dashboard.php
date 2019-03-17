@@ -135,7 +135,7 @@ Highcharts.chart('container', {
 
     tooltip: {
         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> kunjungn<br/>'
     },
 
     "series": [
@@ -155,24 +155,21 @@ Highcharts.chart('container', {
     "drilldown": {
         "series": [
             <?php foreach ($data_guestbook as $key => $row) {
-              $guestbook=$this->Guestbook_model->data_monthandcount($row->year);
               $string = '{
                   "name":"'.$row->year.'",
                   "id":"';
                   $string .= $row->year;
                   $string .= '",
                   "data":[';
-                  if (count($guestbook) != 12){
-                    foreach ($guestbook as $key => $rows) { 
-                      for ($x = 0; $x < 12; $x++) {
-                        $string .= "['".$rows->month_name."',".$rows->total."],['". date("M", strtotime('+'.$x.' months' , strtotime('Jan')))."',0],";
+                    for ($x = 1; $x <= $row->max_month; $x++) {
+                        $guestbook=$this->Guestbook_model->data_monthandcount($row->year, $x);
+                          foreach ($guestbook as $key => $rows) { 
+                            $string .= "['".date('F', mktime(0, 0, 0, $x, 10))."',".$rows->total."],";
+                          }
                       }
-                    }
-                  } else {
-                    foreach ($guestbook as $key => $rows) { 
+                    /*foreach ($guestbook as $key => $rows) { 
                       $string .= "['".$rows->month_name."',".$rows->total."],";
-                    }
-                  }
+                    }*/
                   $string .=']
               },'; 
               echo $string;
@@ -240,9 +237,8 @@ Highcharts.chart('container', {
                     <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
                     <script src="<?php echo base_url() ?>assets/code/modules/exporting.js"></script>
                     <script src="<?php echo base_url() ?>assets/code/modules/export-data.js"></script>
-                    <?php if (!$data_guestbookoccuptaion) { ?>
-                      asdf
-                    <?php } else { ?>
+                    <?php if (!$data_guestbookoccuptaion) { echo $date?>
+                    <?php } else { echo $dates ?>
                     <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                     <script type="text/javascript">
                     Highcharts.chart('container2', {
@@ -287,7 +283,7 @@ Highcharts.chart('container', {
                         "drilldown": {
                             "series": [
                                 <?php foreach ($data_guestbookoccuptaion as $key => $row) {
-                                $guestbookoccupation=$this->Guestbook_model->data_occupationandinstance($date, $row->occupation);
+                                $guestbookoccupation=$this->Guestbook_model->data_occupationandinstance($dates, $row->occupation);
                                 $string = '{
                                     "name":"'.$row->occupation.'",
                                     "colorByPoint": true,
@@ -336,7 +332,7 @@ Highcharts.chart('container', {
     //Date range picker
     $('#reservation').daterangepicker({
         locale: {
-            format: 'YYYY-MM-DD'
+            format: 'DD-MMM-YYYY'
         }
     })
   })
