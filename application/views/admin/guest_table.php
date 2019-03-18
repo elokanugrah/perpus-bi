@@ -18,6 +18,16 @@
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
+          <?php if ($this->session->has_userdata('edit_success')) { ?>
+          <div class="alert alert-info alert-dismissible" style="margin-top:30px;">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('edit_success'); ?>
+            </div>
+            <?php } ?>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Pengunjung Perpustakaan</h3>
@@ -33,6 +43,7 @@
                   <th>Status</th>
                   <th>Instansi</th>
                   <th>Alamat</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +55,9 @@
                   <td><?php echo $row->occupation; ?></td>
                   <td><?php echo $row->instance; ?></td>
                   <td><?php echo $row->address; ?></td>
+                  <td align="center">
+                    <a href="<?php echo site_url('Guest/edit/'.$row->member_id) ?>"><button type="button" class="btn btn-info btn-sm badge mt-1"><i class="fa fa-pencil"></i></button></a>
+                  </td>
                 </tr>
                 <?php }?>
                 </tfoot>

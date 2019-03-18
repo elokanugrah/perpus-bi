@@ -10,6 +10,7 @@ class GuestBook extends CI_Controller
 		parent::__construct();
 		$this->load->model('Guest_model');
 		$this->load->model('Guestbook_model');
+		$this->load->model('Occupation_model');
 	}
 
 	public function index()
@@ -39,7 +40,7 @@ class GuestBook extends CI_Controller
 			}
 			else 
 			{
-				$this->session->set_flashdata('guest_message','Silahkan daftarkan pengunjung baru');
+				$this->session->set_flashdata('guest_message','Silahkan daftarkan diri anda');
 				$this->session->set_flashdata('id_number', $this->input->post('id_number'));
 				$this->session->set_flashdata('name', $this->input->post('name'));
 				redirect("/");
@@ -49,14 +50,26 @@ class GuestBook extends CI_Controller
 
     public function register_action()
     {
-		$data=array(
-            'id_number'  => $this->input->post('id_number'),
-            'name'      => $this->input->post('name'),
-            'sex'      => $this->input->post('sex'),
-            'occupation'    => $this->input->post('occupation'),
-            'instance' => $this->input->post('instance'),
-            'address' => $this->input->post('address')
-        );
+    	if (!empty($this->input->post('occupation')))
+			{
+				$data=array(
+	            'id_number'  => $this->input->post('id_number'),
+	            'name'      => $this->input->post('name'),
+	            'sex'      => $this->input->post('sex'),
+	            'occupation'    => $this->input->post('occupation'),
+	            'instance' => $this->input->post('instance'),
+	            'address' => $this->input->post('address')
+        		);
+			} else {
+				$data=array(
+	            'id_number'  => $this->input->post('id_number'),
+	            'name'      => $this->input->post('name'),
+	            'sex'      => $this->input->post('sex'),
+	            'occupation'    => 'Lainnya',
+	            'instance' => $this->input->post('instance'),
+	            'address' => $this->input->post('address')
+        		);
+			}
         $this->Guest_model->data_adding($data);
         $this->session->set_flashdata('input_success', 'Data baru berhasil ditambahkan');
         redirect(site_url('/'));

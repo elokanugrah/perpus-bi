@@ -23,11 +23,11 @@
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+            <span class="info-box-icon bg-aqua"><i class="ion ion-eye"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">90<small>%</small></span>
+              <span class="info-box-text">Kunjungan Hari Ini</span>
+              <span class="info-box-number"><?php echo $visit; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -69,8 +69,8 @@
             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">New Members</span>
-              <span class="info-box-number">2,000</span>
+              <span class="info-box-text">Tamu Terdaftar</span>
+              <span class="info-box-number"><?php echo $guest; ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -81,7 +81,7 @@
       <!-- /.row -->
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-7">
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Laporan kunjungan</h3>
@@ -99,7 +99,7 @@
                   <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
                   <script src="<?php echo base_url() ?>assets/code/modules/data.js"></script>
                   <script src="<?php echo base_url() ?>assets/code/modules/drilldown.js"></script>
-                  <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                  <div id="container" style="margin: 0 auto"></div>
                   <script type="text/javascript">
 // Create the chart
 Highcharts.chart('container', {
@@ -161,12 +161,21 @@ Highcharts.chart('container', {
                   $string .= $row->year;
                   $string .= '",
                   "data":[';
+                  if ($row->year != date('Y')) {
+                    for ($x = 1; $x <= 12; $x++) {
+                        $guestbook=$this->Guestbook_model->data_monthandcount($row->year, $x);
+                          foreach ($guestbook as $key => $rows) { 
+                            $string .= "['".date('F', mktime(0, 0, 0, $x, 10))."',".$rows->total."],";
+                          }
+                      }
+                  } else {
                     for ($x = 1; $x <= $row->max_month; $x++) {
                         $guestbook=$this->Guestbook_model->data_monthandcount($row->year, $x);
                           foreach ($guestbook as $key => $rows) { 
                             $string .= "['".date('F', mktime(0, 0, 0, $x, 10))."',".$rows->total."],";
                           }
                       }
+                  }
                     /*foreach ($guestbook as $key => $rows) { 
                       $string .= "['".$rows->month_name."',".$rows->total."],";
                     }*/
@@ -178,6 +187,7 @@ Highcharts.chart('container', {
     }
 });
     </script>
+    <?php echo date('Y'); ?>
                 </div>
                 <!-- /.col -->
               </div>
@@ -188,13 +198,7 @@ Highcharts.chart('container', {
           <!-- /.box -->
         </div>
         <!-- /.col -->
-      </div>
-      <!-- /.row -->
-
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <div class="col-md-6">
+        <div class="col-md-5">
           <!-- MAP & BOX PANE -->
           <div class="box box-success">
             <div class="box-header with-border">
@@ -237,9 +241,9 @@ Highcharts.chart('container', {
                     <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
                     <script src="<?php echo base_url() ?>assets/code/modules/exporting.js"></script>
                     <script src="<?php echo base_url() ?>assets/code/modules/export-data.js"></script>
-                    <?php if (!$data_guestbookoccuptaion) { echo $date?>
-                    <?php } else { echo $dates ?>
-                    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <?php if (!$data_guestbookoccuptaion) { /*echo date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");*/ ?>
+                    <?php } else { /*echo date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");*/ ?>
+                    <div id="container2" style="margin: 0 auto"></div>
                     <script type="text/javascript">
                     Highcharts.chart('container2', {
                         chart: {
@@ -313,6 +317,7 @@ Highcharts.chart('container', {
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+
         </div>
         <!-- /.col -->
       </div>

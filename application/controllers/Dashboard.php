@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Guestbook_model');
+        $this->load->model('Guest_model');
         /*if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
         {
             redirect('/');
@@ -19,13 +20,19 @@ class Dashboard extends CI_Controller
     {
 
         $dates = date("d-M-Y", strtotime('-6 days')).' - '.date("d-M-Y");
+        $date = date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");
+        $guest=$this->Guest_model->get_count();
+        $visit=$this->Guestbook_model->get_count();
         $guestbook=$this->Guestbook_model->data_yearandcount();
-        $guestbookoccupation=$this->Guestbook_model->data_occupation($dates);
+        $guestbookoccupation=$this->Guestbook_model->data_occupation($date);
         if(!$this->input->post())
         {
             $data=array(
                 'data_guestbook'  => $guestbook,
                 'data_guestbookoccuptaion'  => $guestbookoccupation,
+                'guest' => $guest,
+                'visit' => $visit,
+                'dates'  => $date,
                 'date'  => $dates
             );
             $this->load->view('admin/dashboard',$data);
@@ -38,6 +45,8 @@ class Dashboard extends CI_Controller
             $data=array(
                 'data_guestbook'  => $guestbook,
                 'data_guestbookoccuptaion'  => $guestbookoccupations,
+                'guest' => $guest,
+                'visit' => $visit,
                 'dates'  => $start.' - '.$end,
                 'date' => $this->input->post('date')
             );

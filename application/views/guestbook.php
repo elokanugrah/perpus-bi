@@ -11,7 +11,7 @@
         <div class="main_panel">
             <form role="form" action="" method="post">
               <div class="form-group has-feedback">
-                <input type="text" name="id_number" class="form-control" placeholder="Nomor identitas Pegawai/Pelajar" required>
+                <input type="text" name="id_number" class="form-control" placeholder="Nomor Identitas" required>
                 <span class="glyphicon glyphicon-credit-card form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -56,15 +56,22 @@
       <p>- <?php echo $this->session->flashdata('guest_message'); ?> -</p>
   </div>
   <div class="form-group has-feedback">
-    <select class="form-control" name="sex" data-placeholder="Jenis Kelamin" style="width: 100%;" required>
-        <option value="" disabled selected hidden>Jenis Kelamin</option>
+    <select class="form-control" name="sex" style="width: 100%;" required>
+        <option value="Tidak diketahui" selected hidden>Jenis Kelamin</option>
         <option value="Laki-laki">Laki-laki</option>
         <option value="Perempuan">Perempuan</option>
     </select>
   </div>
+  <?php 
+  $occupation=$this->Occupation_model->getall_data();
+  ?>
   <div class="form-group has-feedback">
-    <input type="text" name="occupation" class="form-control" placeholder="Status" required>
-      <span class="glyphicon glyphicon-briefcase form-control-feedback"></span>
+    <select class="form-control select2" name="occupation" style="width: 100%;" required>
+        <option value="Lainnya" disabled selected hidden>Status</option>
+        <?php foreach ($occupation as $key => $row) {?>
+        <option value="<?php echo $row->occupation_name; ?>" ><?php echo $row->occupation_name; ?></option>
+        <?php } ?>
+    </select>
   </div>
   <div class="form-group has-feedback">
     <input type="text" name="instance" class="form-control" placeholder="Instansi" required>

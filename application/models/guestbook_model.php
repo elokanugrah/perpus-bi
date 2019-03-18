@@ -5,10 +5,18 @@
 	class Guestbook_model extends CI_Model
 	{
 		public $nama_table	='guestbook';
+		public $id			='guestbook_id';
+		public $order		='ASC';
 
 		function __construct()
 		{
 			parent::__construct();
+		}
+
+		function get_count()
+		{
+			$this->db->where('date', date("Y-m-d"));
+			return $this->db->get($this->nama_table)->num_rows();
 		}
 
 		function data_adding($data)
@@ -21,6 +29,15 @@
 			$this->db->select("YEAR(date) AS year, MAX(MONTH(date)) AS max_month, COUNT(guestbook_id) AS total");
 			$this->db->from($this->nama_table);
 			$this->db->group_by('YEAR(date)');
+			return $this->db->get()->result();
+		}
+
+		function data_monthcount($yr)
+		{
+			$this->db->select("date, YEAR(date) AS year, MONTH(date) AS month, SUBSTRING('Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec ', (MONTH(date) * 4)- 3, 3) AS month_name, COUNT(guestbook_id) AS total");
+			$this->db->from($this->nama_table);
+			$this->db->where('YEAR(date)',$yr);
+			$this->db->group_by('MONTH(date)');
 			return $this->db->get()->result();
 		}
 

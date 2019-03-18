@@ -134,20 +134,12 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="<?php echo active_link('Dashboard'); ?> treeview">
-          <a href="#">
+        <li class="<?php echo active_link('Dashboard'); ?>">
+          <a href="<?php echo site_url('Dashboard') ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li class="<?php echo active_link('Dashboard'); ?>"><a href="<?php echo site_url('Dashboard') ?>"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
         </li>
-        <li class="<?php echo active_link('Guest'); ?> <?php echo active_link('GuestBookList'); ?> treeview">
+        <li class="<?php echo active_link('Guest'); ?> <?php echo active_link('GuestBookList'); ?> <?php echo active_link('Occupation'); ?> treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>Data</span>
             <span class="pull-right-container">
@@ -155,8 +147,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php echo active_link('Guest'); ?>"><a href="<?php echo site_url('Guest') ?>"><i class="fa fa-circle-o"></i> Pengunjung</a></li>
             <li class="<?php echo active_link('GuestBookList'); ?>"><a href="<?php echo site_url('GuestBookList') ?>"><i class="fa fa-circle-o"></i> Buku Tamu</a></li>
+            <li class="<?php echo active_link('Guest'); ?>"><a href="<?php echo site_url('Guest') ?>"><i class="fa fa-circle-o"></i> Pengunjung</a></li>
+            <li class="<?php echo active_link('Occupation'); ?>"><a href="<?php echo site_url('Occupation') ?>"><i class="fa fa-circle-o"></i> Pekerjaan</a></li>
           </ul>
         </li>
       </ul>
