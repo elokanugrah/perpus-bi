@@ -19,13 +19,15 @@ class Dashboard extends CI_Controller
     {
 
         $dates = date("d-M-Y", strtotime('-6 days')).' - '.date("d-M-Y");
+        $date = date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");
         $guestbook=$this->Guestbook_model->data_yearandcount();
-        $guestbookoccupation=$this->Guestbook_model->data_occupation($dates);
+        $guestbookoccupation=$this->Guestbook_model->data_occupation($date);
         if(!$this->input->post())
         {
             $data=array(
                 'data_guestbook'  => $guestbook,
                 'data_guestbookoccuptaion'  => $guestbookoccupation,
+                'dates'  => $date,
                 'date'  => $dates
             );
             $this->load->view('admin/dashboard',$data);

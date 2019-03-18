@@ -24,6 +24,15 @@
 			return $this->db->get()->result();
 		}
 
+		function data_monthcount($yr)
+		{
+			$this->db->select("date, YEAR(date) AS year, MONTH(date) AS month, SUBSTRING('Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec ', (MONTH(date) * 4)- 3, 3) AS month_name, COUNT(guestbook_id) AS total");
+			$this->db->from($this->nama_table);
+			$this->db->where('YEAR(date)',$yr);
+			$this->db->group_by('MONTH(date)');
+			return $this->db->get()->result();
+		}
+
 		function data_monthandcount($yr, $mt)
 		{
 			$this->db->select("date, YEAR(date) AS year, MONTH(date) AS month, SUBSTRING('Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec ', (MONTH(date) * 4)- 3, 3) AS month_name, CASE WHEN COUNT(1) > 0 THEN COUNT(guestbook_id) ELSE 0 END AS total");

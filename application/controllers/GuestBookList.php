@@ -24,7 +24,7 @@ class GuestBookList extends CI_Controller
 
 	function year($yr)
     {
-        $guestbook=$this->Guestbook_model->data_monthandcount($yr);
+        $guestbook=$this->Guestbook_model->data_monthcount($yr);
         $data=array(
             'data_guestbook'  => $guestbook,
             'text'			=> 'bulan'
