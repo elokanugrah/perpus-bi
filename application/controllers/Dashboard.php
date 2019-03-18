@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller
 
         $dates = date("d-M-Y", strtotime('-6 days')).' - '.date("d-M-Y");
         $date = date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");
+
         $guest=$this->Guest_model->get_count();
         $visit=$this->Guestbook_model->get_count();
         $guestbook=$this->Guestbook_model->data_yearandcount();
