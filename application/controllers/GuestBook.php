@@ -35,7 +35,7 @@ class GuestBook extends CI_Controller
 		            'time'		=> date("H.i")
 		        );
 		        $this->Guestbook_model->data_adding($data);
-				$this->session->set_flashdata('name', $this->input->post('name'));
+				$this->session->set_flashdata('name_success', $cek_guest->name);
 				redirect("/");
 			}
 			else 

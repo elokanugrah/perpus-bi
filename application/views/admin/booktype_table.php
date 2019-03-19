@@ -5,7 +5,7 @@
     <section class="content-header">
       <h1>
         Data
-        <small>status pekerjaan</small>
+        <small>jenis buku</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -40,7 +40,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Status Pekerjaan</h3>
+              <h3 class="box-title">Data Jenis Buku</h3>
               <button type="button" class="btn btn-success btn-sm badge mt-1 pull-right" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i></button>
             </div>
             <!-- /.box-header -->
@@ -48,17 +48,17 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Status Pekerjaan</th>
+                  <th>Jenis Buku</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($data_occupation as $key => $row) {?>
+                <?php foreach ($data_booktype as $key => $row) {?>
                 <tr>
-                  <td><?php echo $row->occupation_name; ?></td>
+                  <td><?php echo $row->booktype_name; ?></td>
                   <td align="center">
-                    <button type="button" class="btn btn-info btn-sm badge mt-1" data-toggle="modal" data-target="#modal-default<?php echo $row->occupation_id; ?>"><i class="fa fa-pencil"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm badge mt-1" data-toggle="modal" data-target="#modal-delete<?php echo $row->occupation_id; ?>"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-info btn-sm badge mt-1" data-toggle="modal" data-target="#modal-default<?php echo $row->booktype_id; ?>"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm badge mt-1" data-toggle="modal" data-target="#modal-delete<?php echo $row->booktype_id; ?>"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
                 <?php }?>
@@ -76,18 +76,18 @@
     <div class="modal fade" id="modal-add">
           <div class="modal-dialog">
             <div class="modal-content">
-              <form role="form" action="<?php echo site_url('Occupation/add_action');?>" method="post">
+              <form role="form" action="<?php echo site_url('Booktype/add_action');?>" method="post">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Ubah Data Pekerjaan</h4>
+                <h4 class="modal-title">Ubah Data Jenis Buku</h4>
               </div>
               <div class="modal-body">
                 <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="glyphicon glyphicon-briefcase"></i>
+                    <i class="glyphicon glyphicon-book"></i>
                   </div>
-                  <input type="text" class="form-control" name="occupation_name" placeholder="Status Pekerjaan">
+                  <input type="text" class="form-control" name="booktype_name" placeholder="Jenis Buku">
                 </div>
               </div>
               <div class="modal-footer">
@@ -101,26 +101,26 @@
           <!-- /.modal-dialog -->
         </div>
     <!-- /.content -->
-      <?php foreach ($data_occupation as $key => $row) {?>
-        <div class="modal fade" id="modal-default<?php echo $row->occupation_id; ?>">
+      <?php foreach ($data_booktype as $key => $row) {?>
+        <div class="modal fade" id="modal-default<?php echo $row->booktype_id; ?>">
           <div class="modal-dialog">
             <div class="modal-content">
               <form role="form" action="<?php echo $action; ?>" method="post">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Ubah Data Pekerjaan</h4>
+                <h4 class="modal-title">Ubah Data Jenis Buku</h4>
               </div>
               <div class="modal-body">
                 <div class="input-group">
                   <div class="input-group-addon">
-                    <i class="glyphicon glyphicon-briefcase"></i>
+                    <i class="glyphicon glyphicon-book"></i>
                   </div>
-                  <input type="text" class="form-control" name="occupation_name" value="<?php echo $row->occupation_name;?>" placeholder="Status Pekerjaan" >
+                  <input type="text" class="form-control" name="booktype_name" value="<?php echo $row->booktype_name;?>" placeholder="Jenis Buku" >
                 </div>
               </div>
               <div class="modal-footer">
-                <input name="occupation_id" value="<?php echo $row->occupation_id;?>" hidden>
+                <input name="booktype_id" value="<?php echo $row->booktype_id;?>" hidden>
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
@@ -132,18 +132,18 @@
         </div>
       <?php }?>
         <!-- /.modal -->
-      <?php foreach ($data_occupation as $key => $row) {?>
-        <div class="modal modal-danger fade" id="modal-delete<?php echo $row->occupation_id; ?>">
+      <?php foreach ($data_booktype as $key => $row) {?>
+        <div class="modal modal-danger fade" id="modal-delete<?php echo $row->booktype_id; ?>">
           <div class="modal-dialog">
             <div class="modal-content">
-              <form role="form" action="<?php echo site_url('Occupation/delete/'.$row->occupation_id) ?>" method="post">
+              <form role="form" action="<?php echo site_url('Booktype/delete/'.$row->booktype_id) ?>" method="post">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Hapus Data Pekerjaan</h4>
+                <h4 class="modal-title">Hapus Data Jenis Buku</h4>
               </div>
               <div class="modal-body">
-                <p>Yakin ingin menghapus status pekerjaan <?php echo $row->occupation_name; ?>?</p>
+                <p>Yakin ingin menghapus jenis buku <?php echo $row->booktype_name; ?>?</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>

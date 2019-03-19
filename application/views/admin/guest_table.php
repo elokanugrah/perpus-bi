@@ -15,17 +15,21 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <?php if ($this->session->has_userdata('edit_success')) { ?>
-          <div class="alert alert-info alert-dismissible" style="margin-top:30px;">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('edit_success'); ?>
-            </div>
-            <?php } ?>
+    <div class="col-xs-12">
+      <?php if ($this->session->has_userdata('edit_success')) { ?>
+      <div class="alert alert-info alert-dismissible" style="margin-top:30px;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('edit_success'); ?>
         </div>
-      </div>
+        <?php } ?>
+        <?php if ($this->session->has_userdata('delete_success')) { ?>
+      <div class="alert alert-danger alert-dismissible" style="margin-top:30px;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('delete_success'); ?>
+        </div>
+        <?php } ?>
+    </div>
+    <section class="content">
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -57,6 +61,7 @@
                   <td><?php echo $row->address; ?></td>
                   <td align="center">
                     <a href="<?php echo site_url('Guest/edit/'.$row->member_id) ?>"><button type="button" class="btn btn-info btn-sm badge mt-1"><i class="fa fa-pencil"></i></button></a>
+                    <button type="button" class="btn btn-danger btn-sm badge mt-1" data-toggle="modal" data-target="#modal-delete<?php echo $row->member_id; ?>"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
                 <?php }?>
@@ -72,6 +77,32 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
+    <?php foreach ($data_guest as $key => $row) {?>
+        <div class="modal modal-danger fade" id="modal-delete<?php echo $row->member_id; ?>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form role="form" action="<?php echo site_url('Guest/delete/'.$row->member_id) ?>" method="post">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Hapus Data Pengunjung</h4>
+              </div>
+              <div class="modal-body">
+                <p>Yakin ingin menghapus pengunjung dengan nomor identitas <?php echo $row->id_number; ?> a/n <?php echo $row->name; ?>?</p>
+                <small>Dengan menghapus data pengunjung tersebut maka data pengunjung pada buku tamu dan buku rekomendasi akan terhapus.</small>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline">Hapus</button>
+              </div>
+              </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+      <?php }?>
+        <!-- /.modal -->
   </div>
   <!-- /.content-wrapper -->
 <?php $this->load->view('headerfooter/footer_admin'); ?>

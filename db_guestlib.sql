@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2019 at 04:04 PM
+-- Generation Time: Mar 19, 2019 at 04:31 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -45,6 +45,44 @@ INSERT INTO `admin` (`admin_id`, `username`, `encrypted_password`, `salt`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookrecomendation`
+--
+
+CREATE TABLE `bookrecomendation` (
+  `bookrecomendation_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `type` varchar(70) NOT NULL,
+  `title` varchar(145) NOT NULL,
+  `author` varchar(70) NOT NULL,
+  `version` varchar(50) NOT NULL,
+  `publisher` varchar(70) NOT NULL,
+  `publication_year` int(4) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booktype`
+--
+
+CREATE TABLE `booktype` (
+  `booktype_id` int(11) NOT NULL,
+  `booktype_name` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `booktype`
+--
+
+INSERT INTO `booktype` (`booktype_id`, `booktype_name`) VALUES
+(1, 'Ekonomi'),
+(2, 'Hukum'),
+(5, 'Matematika');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `guestbook`
 --
 
@@ -80,17 +118,38 @@ INSERT INTO `guestbook` (`guestbook_id`, `member_id`, `date`, `time`) VALUES
 (27, 4, '2018-09-03', '13.00'),
 (28, 6, '2018-10-03', '14.20'),
 (29, 6, '2018-10-30', '15.30'),
-(30, 3, '2018-11-30', '11.20'),
-(31, 1, '2018-12-03', '12.12'),
-(32, 3, '2018-12-20', '12.12'),
-(33, 2, '2018-12-20', '12.12'),
-(34, 4, '2018-12-22', '11.12'),
+(30, 3, '2018-10-30', '11.20'),
+(31, 1, '2018-11-30', '12.12'),
+(32, 3, '2018-11-20', '12.12'),
+(33, 2, '2018-11-20', '12.12'),
+(34, 4, '2018-11-22', '11.12'),
 (35, 4, '2019-01-01', '12.12'),
 (36, 1, '2019-01-24', '12.12'),
-(37, 2, '2019-11-01', '14.14'),
-(38, 7, '2019-03-17', '17.27'),
+(37, 2, '2019-03-01', '14.14'),
 (39, 8, '2019-03-17', '21.51'),
-(40, 1, '2019-03-17', '21.52');
+(40, 1, '2019-03-17', '21.52'),
+(41, 1, '2019-03-18', '08.58'),
+(42, 2, '2019-03-18', '09.01'),
+(43, 1, '2019-03-18', '14.00'),
+(45, 9, '2019-03-19', '09.06'),
+(47, 8, '2019-03-19', '09.42'),
+(48, 8, '2019-03-19', '09.48'),
+(49, 8, '2019-03-19', '09.49'),
+(50, 8, '2019-03-19', '09.49'),
+(51, 8, '2019-03-19', '09.49'),
+(52, 1, '2019-03-19', '19.42'),
+(53, 8, '2019-03-19', '19.43'),
+(54, 8, '2019-03-19', '20.19'),
+(55, 8, '2019-03-19', '20.19'),
+(56, 8, '2019-03-19', '20.19'),
+(57, 8, '2019-03-19', '20.19'),
+(58, 8, '2019-03-19', '20.23'),
+(59, 13, '2019-03-19', '21.22'),
+(60, 13, '2019-03-19', '21.23'),
+(61, 13, '2019-03-19', '21.24'),
+(62, 13, '2019-03-19', '21.24'),
+(63, 1, '2019-03-19', '21.25'),
+(64, 13, '2019-03-19', '21.39');
 
 -- --------------------------------------------------------
 
@@ -117,10 +176,14 @@ INSERT INTO `member` (`member_id`, `id_number`, `name`, `sex`, `occupation`, `in
 (2, '1555301078', 'Selvia Firdaus', 'Perempuan', 'Pelajar/Mahasiswa', 'Institut Teknologi Bandung', 'Jl. Lurus'),
 (3, '1455301082', 'Wahyu Adhi', 'Laki-laki', 'Pelajar/Mahasiswa', 'politeknik caltex riau', 'Jl. Lobang'),
 (4, '145590', 'Bayu Setiawan', 'Laki-laki', 'Pegawai/Karyawan', 'Bank Indoensia', 'XYZ'),
-(5, '132290', 'Dara Ayu', 'Perempuan', 'Pegawai/Karyawan', 'Bank Riau', 'xyz'),
+(5, '132290', 'Dara Ayu', 'Perempuan', 'Pelajar / Mahasiswa', 'Bank Riau', 'xyz'),
 (6, '445531228854', 'Delvian Zunaidi', 'Laki-laki', 'Umum', 'Lainnya', 'xyz'),
-(7, 'a', 'a', 'Tidak diketahui', 'Lainnya', 'a', 'a'),
-(8, 's', 's', 'Tidak diketahui', 'Lainnya', 's', 's');
+(8, 's', 's', 'Tidak diketahui', 'Umum', 'Lainnya', 's'),
+(9, '8888', 'xyz', 'Perempuan', 'Wiraswasta', 'XYZ', 'XYZ'),
+(11, 'i', 'i', 'Laki-laki', 'Karyawan Swasta', 'i', 'i'),
+(12, 'p', 'p', 'Perempuan', 'Pelajar / Mahasiswa', 'p', 'p'),
+(13, 'g', 'g', 'Perempuan', 'Pegawai Negeri Sipil', 'g', 'g'),
+(14, 'e', 'e', 'Laki-laki', 'Pelajar / Mahasiswa', 'e', 'e');
 
 -- --------------------------------------------------------
 
@@ -157,6 +220,19 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
+-- Indexes for table `bookrecomendation`
+--
+ALTER TABLE `bookrecomendation`
+  ADD PRIMARY KEY (`bookrecomendation_id`),
+  ADD KEY `member_id` (`member_id`);
+
+--
+-- Indexes for table `booktype`
+--
+ALTER TABLE `booktype`
+  ADD PRIMARY KEY (`booktype_id`);
+
+--
 -- Indexes for table `guestbook`
 --
 ALTER TABLE `guestbook`
@@ -186,16 +262,28 @@ ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `bookrecomendation`
+--
+ALTER TABLE `bookrecomendation`
+  MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `booktype`
+--
+ALTER TABLE `booktype`
+  MODIFY `booktype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `guestbook`
 --
 ALTER TABLE `guestbook`
-  MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `occupation`
@@ -208,10 +296,16 @@ ALTER TABLE `occupation`
 --
 
 --
+-- Constraints for table `bookrecomendation`
+--
+ALTER TABLE `bookrecomendation`
+  ADD CONSTRAINT `fk_member_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `guestbook`
 --
 ALTER TABLE `guestbook`
-  ADD CONSTRAINT `fk_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`);
+  ADD CONSTRAINT `fk_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

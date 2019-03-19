@@ -86,5 +86,12 @@
 			$this->db->group_by('member.instance');
 			return $this->db->get()->result();
 		}
+
+		function cek_member_today($m_id, $date)
+		{
+			$this->db->where('member_id',$m_id);
+			$this->db->where('date',$date);
+			return $this->db->get($this->nama_table)->row();
+		}
 	}
 	?>

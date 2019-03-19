@@ -55,6 +55,14 @@ class Guest extends CI_Controller
         $this->session->set_flashdata('edit_success', 'Data dengan nomor identitas '.$this->input->post('id_number').' a/n '.$this->input->post('name').' berhasil diubah!');
         redirect(site_url('Guest'));
     }
+
+    function delete($id)
+    {
+        $guest = $this->Guest_model->getdata_by_id($id);
+        $this->Guest_model->delete_data($id);
+        $this->session->set_flashdata('delete_success', 'Data dengan nomor identitas '.$guest->id_number.' a/n '.$guest->name.' berhasil dihapus!');
+        redirect(site_url('Guest'));
+    }
 }
 
 ?>

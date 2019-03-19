@@ -139,7 +139,7 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="<?php echo active_link('Guest'); ?> <?php echo active_link('GuestBookList'); ?> <?php echo active_link('Occupation'); ?> treeview">
+        <li class="<?php echo active_link('Guest'); ?> <?php echo active_link('GuestBookList'); ?> <?php echo active_link('Occupation'); ?> <?php echo active_link('Booktype'); ?> treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>Data</span>
             <span class="pull-right-container">
@@ -150,6 +150,7 @@
             <li class="<?php echo active_link('GuestBookList'); ?>"><a href="<?php echo site_url('GuestBookList') ?>"><i class="fa fa-circle-o"></i> Buku Tamu</a></li>
             <li class="<?php echo active_link('Guest'); ?>"><a href="<?php echo site_url('Guest') ?>"><i class="fa fa-circle-o"></i> Pengunjung</a></li>
             <li class="<?php echo active_link('Occupation'); ?>"><a href="<?php echo site_url('Occupation') ?>"><i class="fa fa-circle-o"></i> Pekerjaan</a></li>
+            <li class="<?php echo active_link('Booktype'); ?>"><a href="<?php echo site_url('Booktype') ?>"><i class="fa fa-circle-o"></i> Jenis Buku</a></li>
           </ul>
         </li>
       </ul>
