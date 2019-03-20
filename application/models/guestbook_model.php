@@ -6,7 +6,7 @@
 	{
 		public $nama_table	='guestbook';
 		public $id			='guestbook_id';
-		public $order		='ASC';
+		public $order		='DESC';
 
 		function __construct()
 		{
@@ -57,6 +57,7 @@
 			$this->db->join('member', 'member.member_id=guestbook.member_id');
 			$this->db->where('YEAR(date)', $yr);
 			$this->db->where('MONTH(date)', $mt);
+			$this->db->order_by($this->id,$this->order);
 			return $this->db->get()->result();
 		}
 

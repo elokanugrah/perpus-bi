@@ -48,6 +48,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>No</th>
                   <th>Jenis Buku</th>
                   <th>Aksi</th>
                 </tr>
@@ -55,6 +56,7 @@
                 <tbody>
                 <?php foreach ($data_booktype as $key => $row) {?>
                 <tr>
+                  <td><?php echo $key+1; ?></td>
                   <td><?php echo $row->booktype_name; ?></td>
                   <td align="center">
                     <button type="button" class="btn btn-info btn-sm badge mt-1" data-toggle="modal" data-target="#modal-default<?php echo $row->booktype_id; ?>"><i class="fa fa-pencil"></i></button>

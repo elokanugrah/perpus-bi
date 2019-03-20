@@ -35,12 +35,12 @@ class GuestBook extends CI_Controller
 		            'time'		=> date("H.i")
 		        );
 		        $this->Guestbook_model->data_adding($data);
-				$this->session->set_flashdata('name_success', $cek_guest->name);
+				$this->session->set_flashdata('input_success', 'Selamat datang '.$cek_guest->name);
 				redirect("/");
 			}
 			else 
 			{
-				$this->session->set_flashdata('guest_message','Silahkan daftarkan diri anda');
+				$this->session->set_flashdata('guest_message','Identitas tidak ditemukan');
 				$this->session->set_flashdata('id_number', $this->input->post('id_number'));
 				$this->session->set_flashdata('name', $this->input->post('name'));
 				redirect("/");

@@ -6,7 +6,7 @@
 	{
 		public $nama_table	='occupation';
 		public $id			='occupation_id';
-		public $order		='ASC';
+		public $order		='DESC';
 
 		function __construct()
 		{

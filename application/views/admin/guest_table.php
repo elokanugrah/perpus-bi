@@ -41,6 +41,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>No</th>
                   <th>Nomor identitas</th>
                   <th>Nama</th>
                   <th>Jenis Kelamin</th>
@@ -53,6 +54,7 @@
                 <tbody>
                 <?php foreach ($data_guest as $key => $row) {?>
                 <tr>
+                  <td><?php echo $key+1; ?></td>
                   <td><?php echo $row->id_number; ?></td>
                   <td><?php echo $row->name; ?></td>
                   <td><?php echo $row->sex; ?></td>

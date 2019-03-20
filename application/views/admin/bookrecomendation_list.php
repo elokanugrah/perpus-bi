@@ -5,7 +5,7 @@
     <section class="content-header">
       <h1>
         Data
-        <small>buku tamu / <?php echo $text; ?></small>
+        <small>buku tamu / Jenis Buku</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -17,49 +17,29 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <?php if($text == 'tahun') {?>
-        <?php foreach ($data_guestbook as $key => $row) {?>
+        <?php if(!$data_bookrecomendation) {?>
+        <?php foreach ($data_booktype as $key => $row) {?>
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h1 style="font-weight: bold;"><?php echo $row->year; ?></h1>
+              <h1 style="font-weight: bold;"><?php echo $row->type; ?></h1>
             </div>
             <div class="icon">
               <i><?php echo $row->total; ?></i>
             </div>
             <br>
-            <a href="<?php echo site_url('GuestBookList/year/'.$row->year); ?>" class="small-box-footer">
+            <a href="<?php echo site_url('BookrecomendationList/type/'.$row->type); ?>" class="small-box-footer">
               More info <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>
         <?php }?>
-        <!-- ./col -->
-        <?php } else if($text == 'bulan') {?>
-        <?php foreach ($data_guestbook as $key => $row) {?>
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <p><?php echo $text; ?></p>
-              <h1 style="font-weight: bold;"><?php echo $row->month_name; ?></h1>
-            </div>
-            <div class="icon">
-              <i><?php echo $row->total; ?></i>
-            </div>
-            <a href="<?php echo site_url('GuestBookList/month/'.$row->year.'/'.$row->month.'/'.$row->month_name); ?>" class="small-box-footer">
-              More info <i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-        </div>
-        <?php }?>
-        <!-- ./col -->
         <?php } else {?>
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Pengunjung Perpustakaan</h3>
+              <h3 class="box-title">Data Rekomendasi Buku</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -67,20 +47,26 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nomor Identitas</th>
-                  <th>Nama Pengunjung</th>
-                  <th>Tanggal</th>
-                  <th>Waktu</th>
+                  <th>Jenis</th>
+                  <th>Judul</th>
+                  <th>Pengarang</th>
+                  <th>Versi / Episode</th>
+                  <th>Penerbit</th>
+                  <th>Tahun Terbit</th>
+                  <th>Tanggal Pengajuan</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($data_guestbook as $key => $row) {?>
+                <?php foreach ($data_bookrecomendation as $key => $row) {?>
                 <tr>
                   <td><?php echo $key+1; ?></td>
-                  <td><?php echo $row->id_number; ?></td>
-                  <td><?php echo $row->name; ?></td>
+                  <td><?php echo $row->type; ?></td>
+                  <td><?php echo $row->title; ?></td>
+                  <td><?php echo $row->author; ?></td>
+                  <td><?php echo $row->version; ?></td>
+                  <td><?php echo $row->publisher; ?></td>
+                  <td><?php echo $row->publication_year; ?></td>
                   <td><?php echo $row->date; ?></td>
-                  <td><?php echo $row->time; ?></td>
                 </tr>
                 <?php }?>
                 </tfoot>
@@ -91,7 +77,8 @@
           <!-- /.box -->
         </div>
         <!-- ./col -->
-        <?php } ?>
+        <?php }?>
+        <!-- ./col -->
       </div>
       <!-- /.row -->
     </section>

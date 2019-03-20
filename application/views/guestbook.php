@@ -4,8 +4,20 @@
     <div class="login-box">
       <div class="login-logo">
         <img src="<?php echo base_url() ?>assets/dist/img/perpustakaan.png" height="64">
-    </div>
+      </div>
     <!-- /.login-logo -->
+    <?php if ($this->session->has_userdata('input_success')) { ?>
+      <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check"></i><?php echo $this->session->flashdata('input_success'); ?>
+      </div>
+    <?php } ?>
+    <?php if ($this->session->has_userdata('guest_message')) { ?>
+      <div class="alert alert-warning alert-dismissible" style="margin-top:20px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-warning"></i><?php echo $this->session->flashdata('guest_message'); ?>
+      </div>
+    <?php } ?>
     <div class="login-box-body">
         <p class="login-box-msg">Identitas Pengunjung Perpustakaan</p>
         <div class="main_panel">
@@ -42,7 +54,7 @@
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
     </div>
     <div class="social-auth-links text-center">
-      <p>- <?php echo $this->session->flashdata('guest_message'); ?> -</p>
+      <p>- Lengkapi form dibawah ini -</p>
   </div>
   <div class="form-group has-feedback">
     <select class="form-control" name="sex" style="width: 100%;" required>
@@ -76,18 +88,6 @@
 </div>
 <?php } ?>
 </div>
-<?php if ($this->session->has_userdata('name_success')) { ?>
-  <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <i class="icon fa fa-check-circle"></i>Selamat datang <?php echo $this->session->flashdata('name_success'); ?>
-  </div>
-<?php } ?>
-<?php if ($this->session->has_userdata('input_success')) { ?>
-  <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('input_success'); ?>
-  </div>
-<?php } ?>
 </div>
 <!-- /.login-box-body -->
 </div>

@@ -4,8 +4,20 @@
     <div class="login-box">
       <div class="login-logo">
         <img src="<?php echo base_url() ?>assets/dist/img/perpustakaan.png" height="64">
-    </div>
+      </div>
     <!-- /.login-logo -->
+    <?php if ($this->session->has_userdata('success_message')) { ?>
+      <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check"></i><?php echo $this->session->flashdata('success_message'); ?>
+      </div>
+    <?php } ?>
+    <?php if ($this->session->has_userdata('failed_message')) { ?>
+      <div class="alert alert-info alert-dismissible" style="margin-top:20px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-info"></i><?php echo $this->session->flashdata('failed_message'); ?>
+      </div>
+    <?php } ?>
     <div class="login-box-body">
         <p class="login-box-msg">Rekomendasi Buku Perpustakaan</p>
         <div class="main_panel">
@@ -53,12 +65,6 @@
       </form>
     </div>
     </div>
-    <?php if ($this->session->has_userdata('message')) { ?>
-      <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('message'); ?>
-      </div>
-    <?php } ?>
 </div>
 <!-- /.login-box-body -->
 </div>

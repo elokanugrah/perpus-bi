@@ -82,7 +82,7 @@
 
       <div class="row">
         <div class="col-md-7">
-          <div class="box">
+          <div class="box box-success">
             <div class="box-header with-border">
               <h3 class="box-title">Laporan kunjungan</h3>
 
@@ -200,7 +200,7 @@ Highcharts.chart('container', {
         <!-- /.col -->
         <div class="col-md-5">
           <!-- MAP & BOX PANE -->
-          <div class="box box-success">
+          <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Kriteria Pengunjung</h3>
 
@@ -230,8 +230,6 @@ Highcharts.chart('container', {
                 </div>
                 <!-- /.input group -->
               </div>
-              </form>
-              <!-- /.form group -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -322,6 +320,130 @@ Highcharts.chart('container', {
         <!-- /.col -->
       </div>
       <!-- /.row -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Rekomendasi Buku</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body no-padding">
+              <!-- Date -->
+              <div class="form-group has-feedback">
+                <div class="col-md-10">
+                  <label>Tanggal</label>
+                </div>
+                <div class="col-md-10">
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" name="date1" class="form-control pull-right" id="reservation1" value="<?php echo $date1; ?>">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button type="submit" class="btn btn-warning btn-block btn-flat">Lihat</button>
+                </div>
+                <!-- /.input group -->
+              </div>
+              </form>
+              <!-- /.form group -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row">
+                <div class="col-md-12 col-sm-12">
+                  <div class="pad">
+                    <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
+                    <script src="<?php echo base_url() ?>assets/code/modules/exporting.js"></script>
+                    <script src="<?php echo base_url() ?>assets/code/modules/export-data.js"></script>
+                    <?php if (!$data_booktype) { /*echo date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");*/ ?>
+                    <?php } else { /*echo date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");*/ ?>
+                    <div id="container3" style="margin: 0 auto"></div>
+                    <script type="text/javascript">
+                    Highcharts.chart('container3', {
+                        chart: {
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Persentase kriteria pengunjung'
+                        },
+                        subtitle: {
+                            text: 'Pilih kolom untuk rentang tanggal lainnya'
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.name}: {point.percentage:.1f}%'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> kali<br/>'
+                        },
+                        "series": [
+                            {
+                            name: 'Kunjungan',
+                            colorByPoint: true,
+                            data: [
+                            <?php
+                                foreach ($data_booktype as $key => $row) {
+                            ?>
+                            {
+                                name: '<?php echo $row->type; ?>',
+                                y: <?php echo $row->total; ?>,
+                                drilldown: '<?php echo $row->type; ?>'
+                            },
+                            <?php } ?>
+                            ]
+                        }],
+                        "drilldown": {
+                            "series": [
+                                <?php foreach ($data_booktype as $key => $row) {
+                                $recomendationtitle=$this->Bookrecomendation_model->booktitle_by_type($dates1, $row->type);
+                                $string = '{
+                                    "name":"'.$row->type.'",
+                                    "colorByPoint": true,
+                                    "id":"';
+                                    $string .= $row->type;
+                                    $string .= '",
+                                    "data":[';
+                                    foreach ($recomendationtitle as $key => $rows) { 
+                                        $string .= "['".$rows->title."',".$rows->total."],";
+                                    }
+                                    $string .=']
+                                },'; 
+                                echo $string;
+                                }?>
+                              ]
+                            }
+                    });
+                    </script>
+                    <?php } ?>
+                    <!-- Map will be created here -->
+                  </div>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
@@ -336,6 +458,11 @@ Highcharts.chart('container', {
   $(function () {
     //Date range picker
     $('#reservation').daterangepicker({
+        locale: {
+            format: 'DD-MMM-YYYY'
+        }
+    })
+    $('#reservation1').daterangepicker({
         locale: {
             format: 'DD-MMM-YYYY'
         }

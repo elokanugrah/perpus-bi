@@ -6,7 +6,7 @@
 	{
 		public $nama_table	='booktype';
 		public $id			='booktype_id';
-		public $order		='ASC';
+		public $order		='DESC';
 
 		function __construct()
 		{
