@@ -61,6 +61,18 @@
 			return $this->db->get()->result();
 		}
 
+		function data_by_date($date)
+		{
+			$start = substr($date, 0, 10);
+			$end = substr($date, 13, 10);
+			$this->db->select("DAYNAME(date) AS day, COUNT(guestbook_id) AS total");
+			$this->db->from($this->nama_table);
+			$this->db->where('guestbook.date >=', $start);
+			$this->db->where('guestbook.date <=', $end);
+			$this->db->group_by('DAY(date)');
+			return $this->db->get()->result();
+		}
+
 		function data_occupation($date)
 		{
 			$start = substr($date, 0, 10);

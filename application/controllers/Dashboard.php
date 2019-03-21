@@ -26,12 +26,14 @@ class Dashboard extends CI_Controller
         $guest=$this->Guest_model->get_count();
         $visit=$this->Guestbook_model->get_count();
         $guestbook=$this->Guestbook_model->data_yearandcount();
+        $guestweek=$this->Guestbook_model->data_by_date($date);
         $guestbookoccupation=$this->Guestbook_model->data_occupation($date);
         $booktype=$this->Bookrecomendation_model->data_booktype($date);
         if(!$this->input->post())
         {
             $data=array(
                 'data_guestbook'  => $guestbook,
+                'data_guestweek'  => $guestweek,
                 'data_guestbookoccuptaion'  => $guestbookoccupation,
                 'data_booktype'  => $booktype,
                 'guest' => $guest,
@@ -53,6 +55,7 @@ class Dashboard extends CI_Controller
             $booktypes=$this->Bookrecomendation_model->data_booktype($start1.' - '.$end1);
             $data=array(
                 'data_guestbook'  => $guestbook,
+                'data_guestweek'  => $guestweek,
                 'data_guestbookoccuptaion'  => $guestbookoccupations,
                 'data_booktype'  => $booktypes,
                 'guest' => $guest,

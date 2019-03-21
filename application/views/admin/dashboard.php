@@ -82,125 +82,163 @@
 
       <div class="row">
         <div class="col-md-7">
-          <div class="box box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">Laporan kunjungan</h3>
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_1" data-toggle="tab">Kunjungan seminggu terakhir</a></li>
+              <li><a href="#tab_2" data-toggle="tab">Kunjungan tiap tahun</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
+                <script src="<?php echo base_url() ?>assets/code/modules/series-label.js"></script>
+                <script src="<?php echo base_url() ?>assets/code/modules/exporting.js"></script>
+                <script src="<?php echo base_url() ?>assets/code/modules/export-data.js"></script>
+                <div id="container4" style="margin: 0 auto"></div>
+                <script type="text/javascript">
+                Highcharts.chart('container4', {
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    title: {
+                        text: 'Solar Employment Growth by Sector, 2010-2016'
+                    },
+
+                    subtitle: {
+                        text: 'Source: thesolarfoundation.com'
+                    },
+
+                    yAxis: {
+                        title: {
+                            text: 'Number of Employees'
+                        }
+                    },
+                    plotOptions: {
+                        series: {
+                            pointStart: 1
+                        }
+                    },
+
+                    series: [{
+                        name: 'Installation',
+                        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+                    }]
+
+                });
+                    </script>
               </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2">
+                <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
                   <script src="<?php echo base_url() ?>assets/code/modules/data.js"></script>
                   <script src="<?php echo base_url() ?>assets/code/modules/drilldown.js"></script>
                   <div id="container" style="margin: 0 auto"></div>
                   <script type="text/javascript">
-// Create the chart
-Highcharts.chart('container', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Kunjungan tiap tahun'
-    },
-    subtitle: {
-        text: 'Klik kolom untuk melihat kunjungan tiap bulan'
-    },
-    xAxis: {
-        type: 'category'
-    },
-    yAxis: {
-        title: {
-            text: 'Total kunjungan'
-        }
-
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-            }
-        }
-    },
-
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> kunjungn<br/>'
-    },
-
-    "series": [
-        {
-            "name": "Tahun",
-            "colorByPoint": true,
-            "data": [
-            <?php foreach ($data_guestbook as $key => $row) {
-              echo ' {
-            "name": "'.$row->year.'",
-            "y":'.$row->total.',
-            "drilldown": "'.$row->year.'"
-            },'; } ?>
-            ]
-        }
-    ],
-    "drilldown": {
-        "series": [
-            <?php foreach ($data_guestbook as $key => $row) {
-              $string = '{
-                  "name":"'.$row->year.'",
-                  "id":"';
-                  $string .= $row->year;
-                  $string .= '",
-                  "data":[';
-                  if ($row->year != date('Y')) {
-                    for ($x = 1; $x <= 12; $x++) {
-                        $guestbook=$this->Guestbook_model->data_monthandcount($row->year, $x);
-                          foreach ($guestbook as $key => $rows) { 
-                            $string .= "['".date('F', mktime(0, 0, 0, $x, 10))."',".$rows->total."],";
+                  // Create the chart
+                  Highcharts.chart('container', {
+                      chart: {
+                          type: 'column'
+                      },
+                      title: {
+                          text: 'Kunjungan tiap tahun'
+                      },
+                      subtitle: {
+                          text: 'Klik kolom untuk melihat kunjungan tiap bulan'
+                      },
+                      xAxis: {
+                          type: 'category'
+                      },
+                      yAxis: {
+                          title: {
+                              text: 'Total kunjungan'
                           }
-                      }
-                  } else {
-                    for ($x = 1; $x <= $row->max_month; $x++) {
-                        $guestbook=$this->Guestbook_model->data_monthandcount($row->year, $x);
-                          foreach ($guestbook as $key => $rows) { 
-                            $string .= "['".date('F', mktime(0, 0, 0, $x, 10))."',".$rows->total."],";
+
+                      },
+                      legend: {
+                          enabled: false
+                      },
+                      plotOptions: {
+                          series: {
+                              borderWidth: 0,
+                              dataLabels: {
+                                  enabled: true,
+                              }
                           }
+                      },
+
+                      tooltip: {
+                          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> kunjungn<br/>'
+                      },
+
+                      "series": [
+                          {
+                              "name": "Tahun",
+                              "colorByPoint": true,
+                              "data": [
+                              <?php foreach ($data_guestbook as $key => $row) {
+                                echo ' {
+                              "name": "'.$row->year.'",
+                              "y":'.$row->total.',
+                              "drilldown": "'.$row->year.'"
+                              },'; } ?>
+                              ]
+                          }
+                      ],
+                      "drilldown": {
+                          "series": [
+                              <?php foreach ($data_guestbook as $key => $row) {
+                                $string = '{
+                                    "name":"'.$row->year.'",
+                                    "id":"';
+                                    $string .= $row->year;
+                                    $string .= '",
+                                    "data":[';
+                                    if ($row->year != date('Y')) {
+                                      for ($x = 1; $x <= 12; $x++) {
+                                          $guestbook=$this->Guestbook_model->data_monthandcount($row->year, $x);
+                                            foreach ($guestbook as $key => $rows) { 
+                                              $string .= "['".date('F', mktime(0, 0, 0, $x, 10))."',".$rows->total."],";
+                                            }
+                                        }
+                                    } else {
+                                      for ($x = 1; $x <= $row->max_month; $x++) {
+                                          $guestbook=$this->Guestbook_model->data_monthandcount($row->year, $x);
+                                            foreach ($guestbook as $key => $rows) { 
+                                              $string .= "['".date('F', mktime(0, 0, 0, $x, 10))."',".$rows->total."],";
+                                            }
+                                        }
+                                    }
+                                      /*foreach ($guestbook as $key => $rows) { 
+                                        $string .= "['".$rows->month_name."',".$rows->total."],";
+                                      }*/
+                                    $string .=']
+                                },'; 
+                                echo $string;
+                                }?>
+                          ]
                       }
-                  }
-                    /*foreach ($guestbook as $key => $rows) { 
-                      $string .= "['".$rows->month_name."',".$rows->total."],";
-                    }*/
-                  $string .=']
-              },'; 
-              echo $string;
-              }?>
-        ]
-    }
-});
-    </script>
-    <?php echo date('Y'); ?>
-                </div>
-                <!-- /.col -->
+                  });
+                  </script>
               </div>
-              <!-- /.row -->
+              <!-- /.tab-pane -->
             </div>
-            <!-- ./box-body -->
+            <!-- /.tab-content -->
           </div>
-          <!-- /.box -->
+          <!-- nav-tabs-custom -->
         </div>
         <!-- /.col -->
         <div class="col-md-5">
           <!-- MAP & BOX PANE -->
           <div class="box box-info">
+            <?php /*for($x = 6; $x >= 0; $x--) {
+              $d = date("d-M-Y", strtotime('-'.$x.' days'));
+              if (strcasecmp($d, 'Sun') != 0
+                  && strcasecmp($d, 'Sat') != 0){
+                  echo $d.'<br>';
+              }
+            }*/
+            $i=0;
+              echo date("d M Y", strtotime(' Monday +'.$i.'1 week ago')).'<br>'. date("d M Y", strtotime(' Tuesday +'.$i.'this week')).'<br>'.date("d M Y", strtotime(' Wednesday +'.$i.'this week')).'<br>'. date("d M Y", strtotime(' Thursday +'.$i.'this week')).'<br>'. date("d M Y", strtotime(' Friday +'.$i.'this week')).'<br>';
+             ?>
             <div class="box-header with-border">
               <h3 class="box-title">Kriteria Pengunjung</h3>
 
@@ -467,6 +505,10 @@ Highcharts.chart('container', {
             format: 'DD-MMM-YYYY'
         }
     })
+   
+    /*<?php foreach ($data_guestweek as $key => $row) { ?>
+        {y: '<?php echo $row->day; ?>', item1: <?php echo $row->total; ?>},
+      <?php } ?>*/
   })
 </script>
 </body>
