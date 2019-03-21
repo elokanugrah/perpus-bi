@@ -20,22 +20,23 @@ class Dashboard extends CI_Controller
     public function index()
     {
 
-        $dates = date("d-M-Y", strtotime('-6 days')).' - '.date("d-M-Y");
-        $date = date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");
-
+        $dates = date("d-M-Y", strtotime('Monday this week')).' - '.date("d-M-Y");
+        $date = date("Y-m-d", strtotime('Monday this week')).' - '.date("Y-m-d");
         $guest=$this->Guest_model->get_count();
         $visit=$this->Guestbook_model->get_count();
         $guestbook=$this->Guestbook_model->data_yearandcount();
-        $guestweek=$this->Guestbook_model->data_by_date($date);
+        $countweek=$this->Guestbook_model->data_by_week();
+        $countbook=$this->Bookrecomendation_model->count_data();
         $guestbookoccupation=$this->Guestbook_model->data_occupation($date);
         $booktype=$this->Bookrecomendation_model->data_booktype($date);
         if(!$this->input->post())
         {
             $data=array(
                 'data_guestbook'  => $guestbook,
-                'data_guestweek'  => $guestweek,
                 'data_guestbookoccuptaion'  => $guestbookoccupation,
                 'data_booktype'  => $booktype,
+                'data_countweek'  => $countweek,
+                'data_countbook'  => $countbook,
                 'guest' => $guest,
                 'visit' => $visit,
                 'dates'  => $date,
@@ -55,9 +56,10 @@ class Dashboard extends CI_Controller
             $booktypes=$this->Bookrecomendation_model->data_booktype($start1.' - '.$end1);
             $data=array(
                 'data_guestbook'  => $guestbook,
-                'data_guestweek'  => $guestweek,
                 'data_guestbookoccuptaion'  => $guestbookoccupations,
                 'data_booktype'  => $booktypes,
+                'data_countweek'  => $countweek,
+                'data_countbook'  => $countbook,
                 'guest' => $guest,
                 'visit' => $visit,
                 'dates'  => $start.' - '.$end,

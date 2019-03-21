@@ -32,6 +32,12 @@
 			return $this->db->get($this->nama_table)->result();
 		}
 
+		function count_data()
+		{
+			$this->db->select("COUNT(bookrecomendation_id) AS total");
+			return $this->db->get($this->nama_table)->row();
+		}
+
 		function data_booktype($date)
 		{
 			$start = substr($date, 0, 10);
