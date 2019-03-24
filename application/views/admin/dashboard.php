@@ -454,6 +454,9 @@
         <div class="col-md-6">
           <!-- MAP & BOX PANE -->
           <div class="box box-info">
+            <form role="form" action="<?php echo site_url('Dashboard/sendmail'); ?>" method="post">
+            <button type="submit" class="btn btn-info btn-block btn-flat">Lihat</button>
+            </form>
             <div class="box-header with-border">
               <h3 class="box-title">Kriteria Pengunjung</h3>
 
