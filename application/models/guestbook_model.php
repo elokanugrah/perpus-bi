@@ -32,6 +32,14 @@
 			return $this->db->get($this->nama_table)->row();
 		}
 
+		function getdata_by_memberid($id)
+		{
+			$this->db->where('member_id',$id);
+			$this->db->where('date', date("Y-m-d"));
+			$this->db->order_by($this->id,$this->order);
+			return $this->db->get($this->nama_table)->row();
+		}
+
 		function data_yearandcount()
 		{
 			$this->db->select("YEAR(date) AS year, MAX(MONTH(date)) AS max_month, COUNT(guestbook_id) AS total");

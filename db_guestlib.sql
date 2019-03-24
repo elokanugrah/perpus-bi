@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2019 at 04:31 PM
+-- Generation Time: Mar 25, 2019 at 12:09 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -32,15 +32,17 @@ CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `encrypted_password` varchar(100) NOT NULL,
-  `salt` varchar(10) NOT NULL
+  `salt` varchar(10) NOT NULL,
+  `name` varchar(75) NOT NULL,
+  `email` varchar(75) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `username`, `encrypted_password`, `salt`) VALUES
-(1, 'admin', '/0OFQXNEwlSNT5wMBMwt88AxIc5iYmZkMzQyY2Qw', 'bbfd342cd0');
+INSERT INTO `admin` (`admin_id`, `username`, `encrypted_password`, `salt`, `name`, `email`) VALUES
+(1, 'admin', 'uANbWIF3iE/pyO1F2cdh9aYXZ2xjNWFhOGM1ZjIx', 'c5aa8c5f21', 'Elok Anugrah', 'elok15ti@mahasiswa.pcr.ac.id');
 
 -- --------------------------------------------------------
 
@@ -59,6 +61,13 @@ CREATE TABLE `bookrecomendation` (
   `publication_year` int(4) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bookrecomendation`
+--
+
+INSERT INTO `bookrecomendation` (`bookrecomendation_id`, `member_id`, `type`, `title`, `author`, `version`, `publisher`, `publication_year`, `date`) VALUES
+(1, 1, 'Ekonomi', 'Das Kapital', 'Karl Marx', '', '', 1867, '2019-03-20');
 
 -- --------------------------------------------------------
 
@@ -149,7 +158,22 @@ INSERT INTO `guestbook` (`guestbook_id`, `member_id`, `date`, `time`) VALUES
 (61, 13, '2019-03-19', '21.24'),
 (62, 13, '2019-03-19', '21.24'),
 (63, 1, '2019-03-19', '21.25'),
-(64, 13, '2019-03-19', '21.39');
+(64, 13, '2019-03-19', '21.39'),
+(65, 1, '2019-03-20', '20.17'),
+(66, 1, '2019-03-24', '22.49'),
+(67, 1, '2019-03-24', '22.49'),
+(68, 1, '2019-03-24', '22.53'),
+(69, 8, '2019-03-24', '22.54'),
+(70, 8, '2019-03-24', '22.54'),
+(71, 8, '2019-03-24', '22.55'),
+(72, 8, '2019-03-24', '22.59'),
+(73, 8, '2019-03-24', '22.59'),
+(74, 8, '2019-03-25', '06.03'),
+(75, 8, '2019-03-25', '06.04'),
+(76, 8, '2019-03-25', '06.04'),
+(77, 8, '2019-03-25', '06.04'),
+(78, 8, '2019-03-25', '06.05'),
+(79, 8, '2019-03-25', '06.09');
 
 -- --------------------------------------------------------
 
@@ -209,6 +233,20 @@ INSERT INTO `occupation` (`occupation_id`, `occupation_name`) VALUES
 (6, 'Wiraswasta'),
 (7, 'Lainnya');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `token`
+--
+
+CREATE TABLE `token` (
+  `token_id` int(11) NOT NULL,
+  `token` varchar(90) NOT NULL,
+  `salt` varchar(30) NOT NULL,
+  `email` varchar(75) NOT NULL,
+  `time` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -252,6 +290,12 @@ ALTER TABLE `occupation`
   ADD PRIMARY KEY (`occupation_id`);
 
 --
+-- Indexes for table `token`
+--
+ALTER TABLE `token`
+  ADD PRIMARY KEY (`token_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -265,7 +309,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bookrecomendation`
 --
 ALTER TABLE `bookrecomendation`
-  MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `booktype`
@@ -277,7 +321,7 @@ ALTER TABLE `booktype`
 -- AUTO_INCREMENT for table `guestbook`
 --
 ALTER TABLE `guestbook`
-  MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `member`
@@ -290,6 +334,12 @@ ALTER TABLE `member`
 --
 ALTER TABLE `occupation`
   MODIFY `occupation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `token`
+--
+ALTER TABLE `token`
+  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

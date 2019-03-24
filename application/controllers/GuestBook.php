@@ -29,14 +29,31 @@ class GuestBook extends CI_Controller
 			if(!empty($cek_guest))
 			{
 				date_default_timezone_set("Asia/Bangkok");
-				$data=array(
-		            'member_id' => $cek_guest->member_id,
-		            'date'		=> date("Y-m-d"),
-		            'time'		=> date("H.i")
-		        );
-		        $this->Guestbook_model->data_adding($data);
-				$this->session->set_flashdata('input_success', 'Selamat datang '.$cek_guest->name);
-				redirect("/");
+				$cek_guestbook=$this->Guestbook_model->getdata_by_memberid($cek_guest->member_id);
+				if(empty($cek_guestbook)){
+					$data=array(
+			            'member_id' => $cek_guest->member_id,
+			            'date'		=> date("Y-m-d"),
+			            'time'		=> date("H.i")
+			        );
+			        $this->Guestbook_model->data_adding($data);
+					$this->session->set_flashdata('input_success', 'Selamat datang '.$cek_guest->name);
+					redirect("/");
+				} 
+				if (!empty($cek_guestbook) && (date("H.i") >= date("H.i", strtotime($cek_guestbook->time)+14400))) {
+					$data=array(
+			            'member_id' => $cek_guest->member_id,
+			            'date'		=> date("Y-m-d"),
+			            'time'		=> date("H.i")
+			        );
+			        $this->Guestbook_model->data_adding($data);
+					$this->session->set_flashdata('input_success', 'Selamat datang '.$cek_guest->name);
+					redirect("/");
+				}
+				else {
+					$this->session->set_flashdata('failed_message', 'Maaf anda sudah mengisi buku tamu sebelumnya');
+					redirect("/");
+				}
 			}
 			else 
 			{

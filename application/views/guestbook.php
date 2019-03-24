@@ -18,6 +18,12 @@
           <i class="icon fa fa-warning"></i><?php echo $this->session->flashdata('guest_message'); ?>
       </div>
     <?php } ?>
+    <?php if ($this->session->has_userdata('failed_message')) { ?>
+      <div class="alert alert-warning alert-dismissible" style="margin-top:20px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-warning"></i><?php echo $this->session->flashdata('failed_message'); ?>
+      </div>
+    <?php } ?>
     <div class="login-box-body">
         <p class="login-box-msg">Identitas Pengunjung Perpustakaan</p>
         <div class="main_panel">
