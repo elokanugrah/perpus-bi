@@ -38,7 +38,7 @@
                 <!-- /.input group -->
               </div>
               <!-- /.form group -->
-              <div class="form-group col-xs-6">
+              <div class="col-xs-6">
                 <label>Nama Pengunjung</label>
 
                 <div class="input-group">
@@ -75,7 +75,6 @@
               </div>
               <div class="form-group col-xs-6">
                 <label>Instansi</label>
-
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-university"></i>

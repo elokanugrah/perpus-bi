@@ -15,6 +15,14 @@
     </section>
 
     <!-- Main content -->
+     <div class="col-xs-12">
+      <?php if ($this->session->has_userdata('delete_success')) { ?>
+      <div class="alert alert-danger alert-dismissible" style="margin-top:30px;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('delete_success'); ?>
+        </div>
+      <?php } ?>
+    </div>
     <section class="content">
       <div class="row">
         <?php if(!$data_bookrecomendation) {?>
@@ -54,6 +62,7 @@
                   <th>Penerbit</th>
                   <th>Tahun Terbit</th>
                   <th>Tanggal Pengajuan</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -67,6 +76,9 @@
                   <td><?php echo $row->publisher; ?></td>
                   <td><?php echo $row->publication_year; ?></td>
                   <td><?php echo $row->date; ?></td>
+                  <td align="center">
+                    <button type="button" class="btn btn-danger btn-sm badge mt-1" data-toggle="modal" data-target="#modal-delete<?php echo $row->bookrecomendation_id; ?>"><i class="fa fa-trash"></i></button>
+                  </td>
                 </tr>
                 <?php }?>
                 </tfoot>
@@ -77,6 +89,32 @@
           <!-- /.box -->
         </div>
         <!-- ./col -->
+        <?php foreach ($data_bookrecomendation as $key => $row) {?>
+        <div class="modal modal-danger fade" id="modal-delete<?php echo $row->bookrecomendation_id; ?>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form role="form" action="<?php echo site_url('BookrecomendationList/delete/'.$row->bookrecomendation_id) ?>" method="post">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Hapus Data Buku Rekomendasi</h4>
+              </div>
+              <div class="modal-body">
+                <p>Yakin ingin menghapus buku rekomendasi dengan judul <?php echo $row->title; ?>?</p>
+                <small>Dengan menghapus data buku tersebut maka data buku rekomendasi akan terhapus.</small>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline">Hapus</button>
+              </div>
+              </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <?php }?>
+        <!-- /.modal -->
         <?php }?>
         <!-- ./col -->
       </div>

@@ -8,14 +8,13 @@ class Dashboard extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
+        {
+            redirect('/');
+        }
         $this->load->model('Guestbook_model');
         $this->load->model('Guest_model');
         $this->load->model('Bookrecomendation_model');
-        $this->load->model('Email_model');
-        /*if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
-        {
-            redirect('/');
-        }*/
     }
 
     public function index()
@@ -71,13 +70,6 @@ class Dashboard extends CI_Controller
             $this->load->view('admin/dashboard',$data);
         }
         
-    }
-
-    public function sendmail()
-    {
-    	$mail = 'elok.anugrah45@gmail.com';
-    	$user = 'Elok Anugrah';
-    	$this->Email_model->sendVerificatinEmail($mail,$user);
     }
 }
 

@@ -24,6 +24,14 @@
 			return $this->db->insert($this->nama_table,$data);
 		}
 
+		function getdata_by_id($id)
+		{
+			$this->db->select("guestbook.guestbook_id, member.id_number, member.name, YEAR(guestbook.date) AS year, MONTH(guestbook.date) AS month, MONTHNAME(guestbook.date) AS month_name");
+			$this->db->join('member', 'member.member_id=guestbook.member_id');
+			$this->db->where($this->id,$id);
+			return $this->db->get($this->nama_table)->row();
+		}
+
 		function data_yearandcount()
 		{
 			$this->db->select("YEAR(date) AS year, MAX(MONTH(date)) AS max_month, COUNT(guestbook_id) AS total");
@@ -52,7 +60,7 @@
 
 		function data_by_yearmonth($yr, $mt)
 		{
-			$this->db->select("member.id_number, member.name, guestbook.date, guestbook.time");
+			$this->db->select("guestbook.guestbook_id, member.id_number, member.name, guestbook.date, guestbook.time");
 			$this->db->from($this->nama_table);
 			$this->db->join('member', 'member.member_id=guestbook.member_id');
 			$this->db->where('YEAR(date)', $yr);
@@ -111,5 +119,11 @@
 			$this->db->where('date',$date);
 			return $this->db->get($this->nama_table)->row();
 		}
+
+		function delete_data($id)
+    	{
+        	$this->db->where($this->id,$id);
+        	$this->db->delete($this->nama_table);
+    	}
 	}
 	?>

@@ -15,6 +15,14 @@
     </section>
 
     <!-- Main content -->
+    <div class="col-xs-12">
+      <?php if ($this->session->has_userdata('delete_success')) { ?>
+      <div class="alert alert-danger alert-dismissible" style="margin-top:30px;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('delete_success'); ?>
+        </div>
+      <?php } ?>
+    </div>
     <section class="content">
       <div class="row">
         <?php if($text == 'tahun') {?>
@@ -71,6 +79,7 @@
                   <th>Nama Pengunjung</th>
                   <th>Tanggal</th>
                   <th>Waktu</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -78,9 +87,13 @@
                 <tr>
                   <td><?php echo $key+1; ?></td>
                   <td><?php echo $row->id_number; ?></td>
+                  <td><?php echo $row->guestbook_id; ?></td>
                   <td><?php echo $row->name; ?></td>
                   <td><?php echo $row->date; ?></td>
                   <td><?php echo $row->time; ?></td>
+                  <td align="center">
+                    <button type="button" class="btn btn-danger btn-sm badge mt-1" data-toggle="modal" data-target="#modal-delete<?php echo $row->guestbook_id; ?>"><i class="fa fa-trash"></i></button>
+                  </td>
                 </tr>
                 <?php }?>
                 </tfoot>
@@ -91,6 +104,32 @@
           <!-- /.box -->
         </div>
         <!-- ./col -->
+        <?php foreach ($data_guestbook as $key => $row) {?>
+        <div class="modal modal-danger fade" id="modal-delete<?php echo $row->guestbook_id; ?>">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form role="form" action="<?php echo site_url('GuestBookList/delete/'.$row->guestbook_id) ?>" method="post">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Hapus Data Buku Tamu</h4>
+              </div>
+              <div class="modal-body">
+                <p>Yakin ingin menghapus pengunjung dengan nomor identitas <?php echo $row->id_number; ?> a/n <?php echo $row->name; ?> dari buku tamu?</p>
+                <small>Dengan menghapus data pengunjung dari buku tamu maka data pengunjung tersebut akan terhapus dari buku tamu.</small>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline">Hapus</button>
+              </div>
+              </form>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <?php }?>
+        <!-- /.modal -->
         <?php } ?>
       </div>
       <!-- /.row -->

@@ -41,6 +41,14 @@ class GuestBookList extends CI_Controller
         );
         $this->load->view('admin/guestbook_list',$data);
     }
+
+    function delete($id)
+    {
+        $guestbook = $this->Guestbook_model->getdata_by_id($id);
+        $this->Guestbook_model->delete_data($id);
+        $this->session->set_flashdata('delete_success', 'Data dengan nomor identitas '.$guestbook->id_number.' a/n '.$guestbook->name.' berhasil dihapus!');
+        redirect(site_url('GuestBookList/month/'.$guestbook->year.'/'.$guestbook->month.'/'.$guestbook->month_name));
+    }
 }
 
 ?>

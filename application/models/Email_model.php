@@ -1,7 +1,7 @@
 <?php
 Class Email_model extends CI_Model{
 
-	function sendVerificatinEmail($email,$user){
+	function sendVerificatinEmail($email,$user,$link){
 	// load library email
         $this->load->library('PHPMailerAutoload');
         
@@ -26,7 +26,7 @@ Class Email_model extends CI_Model{
         $mail->Password = 'deltaelok45';
         $mail->WordWrap = 50;
         // set email content
-        $mail->setFrom('elokanugrahalkhaliq@gmail.com', 'Sistem Monitoring');
+        $mail->setFrom('elokanugrahalkhaliq@gmail.com', 'Perpustakaan Bank Indoensia Prov. Riau');
         $mail->addAddress($email,$user);
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
@@ -39,7 +39,7 @@ Class Email_model extends CI_Model{
 
 
         //Konten
-        $mail->Subject = 'Email Perkembangan PA';
+        $mail->Subject = '[BI-PBR] Konfirmasi Permintaan Reset Password';
         $mail->Body = "<html>
   <head>
     <meta name='viewport' content='width=device-width' />
@@ -157,7 +157,7 @@ Class Email_model extends CI_Model{
         font-size: 14px;
         font-weight: normal;
         margin: 0;
-        text-align: center;
+        text-align: left;
         margin-bottom: 15px; }
         p li,
         ul li,
@@ -338,7 +338,7 @@ Class Email_model extends CI_Model{
           <div class='content'>
 
             <!-- START CENTERED WHITE CONTAINER -->
-            <div class='headers'>Sistem Monitoring</div>
+            <div class='headers'>Buku Tamu Perpustakaan Bank Indonesia Riau</div>
             <table role='presentation' class='main'>
 
               <!-- START MAIN CONTENT AREA -->
@@ -349,19 +349,9 @@ Class Email_model extends CI_Model{
                     <tr>
                       <td>
 
-                        <div class='align-left'><p>Yth Bapak/Ibu,</p></div>
-                        <div style='align-left'><p>Orang tua/ Wali</p></div>
-                        <div style='align-left'><p>dari $user</p></div>
-                        <div style='align-left'><p>di Tempat</p></div>
-
-                        <p>Melalui email ini kami ingin menyampaikan perkembangan Proyek Akhir Mahasiswa Sebagai Berikut :</p>
-                        <p>Nama            : $user</p>
-                        <p>Perkembangan PA : <b>Test</b></p>
-                        <p>Progress Laporan : bab</p>
-                        <p>Tanggal Terakhir Bimbingan : asdf</p>
-                        <p>Mohon kerja sama Bapak/Ibu untuk terus memberikan dukungan dan dorongan kepada Mahasiswa dengan nama $user,</p>
-                        <p>Demikian Email disampaikan, Terimakasih atas perhatian Bapak/Ibu Sekalian.</p>
-                
+                        <p>Sehubungan dengan permintaan Bapak/Ibu untuk reset password dapat dilakukan melalui link berikut:</p>
+                        <p>$link</p>
+                        <p>Pastikan bahwa Bapak/Ibu segera mengakses link di atas dalam waktu hingga 5 menit semenjak pesan ini di kirimkan dan tidak berbagi informasi akun Admin Buku Tamu Perpustakaan BI Riau dengan orang lain.</p>
                         <table role='presentation' border='0' cellpadding='0' cellspacing='0' class='btn btn-primary'>
                           <tbody>
                             <tr>
@@ -389,7 +379,7 @@ Class Email_model extends CI_Model{
               <table role='presentation' border='0' cellpadding='0' cellspacing='0'>
                 <tr>
                   <td class='content-block'>
-                    <span class='apple-link'>Nisaul Rahmi, 2018</span>
+                    <span class='apple-link'>Elok Anugrah Alkhaliq - Wahyu Adhi Setiantoro - Selvia Firdaus, 2019</span>
                     <br>
                   </td>
                 </tr>

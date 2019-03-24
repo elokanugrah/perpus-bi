@@ -100,8 +100,8 @@
                 <div class="col-md-10">
                   <label>Minggu</label>
                 </div>
-                <div class="col-md-10">
-                  <select name="select1" id="select1">
+                <div class="col-md-12">
+                  <select class="form-control select2" name="select1" id="select1">
                     <option value="1">Minggu ini</option>
                     <option value="2">Minggu lalu</option>
                     <option value="3">2 Minggu lalu</option>
@@ -352,7 +352,6 @@
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_2">
-                <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
                   <script src="<?php echo base_url() ?>assets/code/modules/data.js"></script>
                   <script src="<?php echo base_url() ?>assets/code/modules/drilldown.js"></script>
                   <div id="container" style="margin: 0 auto"></div>
@@ -454,9 +453,6 @@
         <div class="col-md-6">
           <!-- MAP & BOX PANE -->
           <div class="box box-info">
-            <form role="form" action="<?php echo site_url('Dashboard/sendmail'); ?>" method="post">
-            <button type="submit" class="btn btn-info btn-block btn-flat">Lihat</button>
-            </form>
             <div class="box-header with-border">
               <h3 class="box-title">Kriteria Pengunjung</h3>
 
@@ -492,9 +488,6 @@
               <div class="row">
                 <div class="col-md-12 col-sm-12">
                   <div class="pad">
-                    <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
-                    <script src="<?php echo base_url() ?>assets/code/modules/exporting.js"></script>
-                    <script src="<?php echo base_url() ?>assets/code/modules/export-data.js"></script>
                     <?php if (!$data_guestbookoccuptaion) { /*echo date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");*/ ?>
                     <?php } else { /*echo date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");*/ ?>
                     <div id="container2" style="margin: 0 auto"></div>
@@ -617,9 +610,6 @@
               <div class="row">
                 <div class="col-md-12 col-sm-12">
                   <div class="pad">
-                    <script src="<?php echo base_url() ?>assets/code/highcharts.js"></script>
-                    <script src="<?php echo base_url() ?>assets/code/modules/exporting.js"></script>
-                    <script src="<?php echo base_url() ?>assets/code/modules/export-data.js"></script>
                     <?php if (!$data_booktype) { /*echo date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");*/ ?>
                     <?php } else { /*echo date("Y-m-d", strtotime('-6 days')).' - '.date("Y-m-d");*/ ?>
                     <div id="container3" style="margin: 0 auto"></div>
@@ -629,10 +619,10 @@
                             type: 'pie'
                         },
                         title: {
-                            text: 'Persentase kriteria pengunjung'
+                            text: 'Kriteria buku yang direkomendasikan'
                         },
                         subtitle: {
-                            text: 'Pilih kolom untuk rentang tanggal lainnya'
+                            text: 'Pilih kolom untuk melihat judul buku'
                         },
                         plotOptions: {
                             series: {

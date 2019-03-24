@@ -8,6 +8,10 @@ class BookrecomendationList extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+        if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
+        {
+            redirect('Login');
+        }
 		$this->load->model('Bookrecomendation_model');
 	}
 
@@ -28,6 +32,14 @@ class BookrecomendationList extends CI_Controller
             'data_bookrecomendation'  => $bookrecomendation
         );
         $this->load->view('admin/bookrecomendation_list',$data);
+    }
+
+    function delete($id)
+    {
+        $bookrecomendation = $this->Bookrecomendation_model->getdata_by_id($id);
+        $this->Bookrecomendation_model->delete_data($id);
+        $this->session->set_flashdata('delete_success', 'Data dengan judul '.$bookrecomendation->title.' berhasil dihapus!');
+        redirect(site_url('BookrecomendationList/type/'.$bookrecomendation->type));
     }
 }
 
