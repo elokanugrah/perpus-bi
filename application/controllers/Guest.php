@@ -8,6 +8,10 @@ class Guest extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+        if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
+        {
+            redirect('/');
+        }
 		$this->load->model('Guest_model');
         $this->load->model('Occupation_model');
 	}
