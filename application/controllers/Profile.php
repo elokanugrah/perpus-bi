@@ -73,10 +73,16 @@ class Profile extends CI_Controller
 
     public function password_reset()
     {
+        if (!$this->session->has_userdata('reset_password')){
+            $resetpassword=false;
+            redirect("Profile");
+        } else {
+            $resetpassword=true;
+        }
         $uname = $this->session->userdata('uname');
         $admin=$this->Login_model->getUserByUname($uname);
         $data=array(
-            'resetpassword' => true,
+            'resetpassword' => $resetpassword,
             'data_admin'  => $admin,
             'action_username' => site_url('Profile/edit_action'),
             'action_resetpassword' => site_url('Profile/action_resetpassword')

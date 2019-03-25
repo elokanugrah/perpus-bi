@@ -18,15 +18,15 @@ Class Email_model extends CI_Model{
         
         // set smtp
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'mail.calonwisudawan.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'tls';
-        $mail->Username = 'elokanugrahalkhaliq@gmail.com';
+        $mail->Username = 'info@calonwisudawan.com';
         $mail->Password = 'deltaelok45';
         $mail->WordWrap = 50;
         // set email content
-        $mail->setFrom('elokanugrahalkhaliq@gmail.com', 'Perpustakaan Bank Indoensia Prov. Riau');
+        $mail->setFrom('info@calonwisudawan.com', 'Perpustakaan Bank Indoensia Prov. Riau');
         $mail->addAddress($email,$user);
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
@@ -351,7 +351,7 @@ Class Email_model extends CI_Model{
 
                         <p>Sehubungan dengan permintaan Bapak/Ibu untuk reset password dapat dilakukan melalui link berikut:</p>
                         <p>$link</p>
-                        <p>Pastikan bahwa Bapak/Ibu segera mengakses link di atas dalam waktu hingga 5 menit semenjak pesan ini di kirimkan dan tidak berbagi informasi akun Admin Buku Tamu Perpustakaan BI Riau dengan orang lain.</p>
+                        <p>Pastikan bahwa Bapak/Ibu segera mengakses link di atas dalam waktu 5 menit semenjak pesan ini di kirimkan dan tidak berbagi informasi akun Admin Buku Tamu Perpustakaan BI Riau dengan orang lain.</p>
                         <table role='presentation' border='0' cellpadding='0' cellspacing='0' class='btn btn-primary'>
                           <tbody>
                             <tr>

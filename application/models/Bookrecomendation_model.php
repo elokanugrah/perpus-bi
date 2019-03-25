@@ -32,6 +32,15 @@
 			return $this->db->get($this->nama_table)->result();
 		}
 
+		function getlimit_data_group()
+		{
+			$this->db->select("type, COUNT(bookrecomendation_id) AS total");
+			$this->db->group_by('type');
+			$this->db->limit(5);
+			$this->db->order_by("total",$this->order);
+			return $this->db->get($this->nama_table)->result();
+		}
+
 		function count_data()
 		{
 			$this->db->select("COUNT(bookrecomendation_id) AS total");

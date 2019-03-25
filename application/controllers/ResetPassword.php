@@ -69,6 +69,7 @@ class ResetPassword extends CI_Controller
                     $this->session->set_userdata('logined', true);
                     $this->session->set_userdata('uname', $admin->username);
                     $this->Token_model->delete_data($gettoken->token_id);
+                    $this->session->set_flashdata('reset_password', true);
                     redirect(site_url('Profile/password_reset/'));
                 } else {
                     $this->Token_model->delete_data($gettoken->token_id);

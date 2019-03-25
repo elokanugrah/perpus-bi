@@ -86,7 +86,7 @@
 
 		function data_by_week()
 		{
-			$start = date("Y-m-d", strtotime('Monday this week'));
+			$start = date("Y-m-d", strtotime('-7 days'));
 			$end = date("Y-m-d");
 			$this->db->select("COUNT(guestbook_id) AS total");
 			$this->db->where('date >=', $start);

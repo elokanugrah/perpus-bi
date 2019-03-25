@@ -10,7 +10,7 @@ class Dashboard extends CI_Controller
         parent::__construct();
         if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
         {
-            redirect('/');
+            redirect('Login');
         }
         $this->load->model('Guestbook_model');
         $this->load->model('Guest_model');
@@ -29,12 +29,14 @@ class Dashboard extends CI_Controller
         $countbook=$this->Bookrecomendation_model->count_data();
         $guestbookoccupation=$this->Guestbook_model->data_occupation($date);
         $booktype=$this->Bookrecomendation_model->data_booktype($date);
+        $bookrec=$this->Bookrecomendation_model->getlimit_data_group();
         if(!$this->input->post())
         {
             $data=array(
                 'data_guestbook'  => $guestbook,
                 'data_guestbookoccuptaion'  => $guestbookoccupation,
                 'data_booktype'  => $booktype,
+                'data_bookrec'  => $bookrec,
                 'data_countweek'  => $countweek,
                 'data_countbook'  => $countbook,
                 'guest' => $guest,
@@ -58,6 +60,7 @@ class Dashboard extends CI_Controller
                 'data_guestbook'  => $guestbook,
                 'data_guestbookoccuptaion'  => $guestbookoccupations,
                 'data_booktype'  => $booktypes,
+                'data_bookrec'  => $bookrec,
                 'data_countweek'  => $countweek,
                 'data_countbook'  => $countbook,
                 'guest' => $guest,

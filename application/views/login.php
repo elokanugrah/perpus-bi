@@ -40,9 +40,6 @@
               <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
           </div>
            <a href="" data-toggle="modal" data-target="#modal-reset">Lupa password?</a>
-           <?php date_default_timezone_set("Asia/Bangkok"); if(date("H.i") <= date("H.i", strtotime("19.00")+300)){
-              $time = "19.00"; echo date("H.i", strtotime($time)+300);
-           } ?>
       </form>
   </div>
 </div>
