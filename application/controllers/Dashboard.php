@@ -19,7 +19,6 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-
         $dates = date("d-M-Y", strtotime('Monday this week')).' - '.date("d-M-Y");
         $date = date("Y-m-d", strtotime('Monday this week')).' - '.date("Y-m-d");
         $guest=$this->Guest_model->get_count();
@@ -30,7 +29,7 @@ class Dashboard extends CI_Controller
         $guestbookoccupation=$this->Guestbook_model->data_occupation($date);
         $booktype=$this->Bookrecomendation_model->data_booktype($date);
         $bookrec=$this->Bookrecomendation_model->getlimit_data_group();
-        if(!$this->input->post())
+        if(!$this->input->get())
         {
             $data=array(
                 'data_guestbook'  => $guestbook,
@@ -50,10 +49,10 @@ class Dashboard extends CI_Controller
         }
         else
         {
-            $start = date("Y-m-d", strtotime(substr($this->input->post('date'), 0, 11)));
-            $end = date("Y-m-d", strtotime(substr($this->input->post('date'), 14, 11)));
-            $start1 = date("Y-m-d", strtotime(substr($this->input->post('date1'), 0, 11)));
-            $end1 = date("Y-m-d", strtotime(substr($this->input->post('date1'), 14, 11)));
+            $start = date("Y-m-d", strtotime(substr($this->input->get('date'), 0, 11)));
+            $end = date("Y-m-d", strtotime(substr($this->input->get('date'), 14, 11)));
+            $start1 = date("Y-m-d", strtotime(substr($this->input->get('date1'), 0, 11)));
+            $end1 = date("Y-m-d", strtotime(substr($this->input->get('date1'), 14, 11)));
             $guestbookoccupations=$this->Guestbook_model->data_occupation($start.' - '.$end);
             $booktypes=$this->Bookrecomendation_model->data_booktype($start1.' - '.$end1);
             $data=array(
@@ -67,10 +66,11 @@ class Dashboard extends CI_Controller
                 'visit' => $visit,
                 'dates'  => $start.' - '.$end,
                 'dates1'  => $start1.' - '.$end1,
-                'date' => $this->input->post('date'),
-                'date1'  => $this->input->post('date1')
+                'date' => $this->input->get('date'),
+                'date1'  => $this->input->get('date1')
             );
             $this->load->view('admin/dashboard',$data);
+            unset ($_get);
         }
         
     }

@@ -464,7 +464,7 @@
             </div>
             <div class="box-body no-padding">
               <!-- Date -->
-              <form role="form" action="" method="post">
+              <form role="form" action="" method="get">
               <div class="form-group has-feedback">
                 <div class="col-md-10">
                   <label>Tanggal</label>
