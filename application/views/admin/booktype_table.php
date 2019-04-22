@@ -8,12 +8,7 @@
         <small>jenis buku</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="<?php echo active_link('Booktype') ?>"><a href="#"><i class="fa fa-table"></i> Jenis Buku</a></li>rd"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li class="<?php echo active_link('Booktype') ?>"><a href="#"><i class="fa fa-table"></i> Jenis Buku</a></li></i> Home</a></li>
       </ol>
     </section>
 

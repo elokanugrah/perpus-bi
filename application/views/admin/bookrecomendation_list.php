@@ -8,7 +8,7 @@
         <small>kehadiran magang</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="<?php echo active_link('Report/add_perdate'); ?>"><a href="<?php echo site_url('Report') ?>"><i class="fa fa-files-o"></i> Laporan Rekapitulasi</a></li>
+        <li class="<?php echo active_link('BookrecomendationList'); ?>"><a href="#"><i class="fa fa-files-o"></i> Laporan Rekapitulasi</a></li>
       </h1>
     </section>
 
