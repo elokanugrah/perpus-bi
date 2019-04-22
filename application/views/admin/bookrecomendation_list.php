@@ -5,19 +5,16 @@
     <section class="content-header">
       <h1>
         Data
-<<<<<<< HEAD
         <small>kehadiran magang</small>
       </h1>
       <ol class="breadcrumb">
         <li class="<?php echo active_link('Report/add_perdate'); ?>"><a href="<?php echo site_url('Report') ?>"><i class="fa fa-files-o"></i> Laporan Rekapitulasi</a></li>
-=======
         <small>buku tamu / Jenis Buku</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Tables</a></li>
         <li class="active">Data tables</li>
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
       </ol>
     </section>
 

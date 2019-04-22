@@ -3,15 +3,15 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
+
 -- Generation Time: 08 Apr 2019 pada 04.15
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
-=======
+
 -- Generation Time: Mar 25, 2019 at 12:09 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -49,8 +49,6 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`admin_id`, `username`, `encrypted_password`, `salt`, `name`, `email`) VALUES
 (1, 'admin', 'uANbWIF3iE/pyO1F2cdh9aYXZ2xjNWFhOGM1ZjIx', 'c5aa8c5f21', 'Elok Anugrah', 'elok15ti@mahasiswa.pcr.ac.id');
-<<<<<<< HEAD
-=======
 
 -- --------------------------------------------------------
 
@@ -96,7 +94,51 @@ INSERT INTO `booktype` (`booktype_id`, `booktype_name`) VALUES
 (1, 'Ekonomi'),
 (2, 'Hukum'),
 (5, 'Matematika');
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookrecomendation`
+--
+
+CREATE TABLE `bookrecomendation` (
+  `bookrecomendation_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `type` varchar(70) NOT NULL,
+  `title` varchar(145) NOT NULL,
+  `author` varchar(70) NOT NULL,
+  `version` varchar(50) NOT NULL,
+  `publisher` varchar(70) NOT NULL,
+  `publication_year` int(4) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bookrecomendation`
+--
+
+INSERT INTO `bookrecomendation` (`bookrecomendation_id`, `member_id`, `type`, `title`, `author`, `version`, `publisher`, `publication_year`, `date`) VALUES
+(1, 1, 'Ekonomi', 'Das Kapital', 'Karl Marx', '', '', 1867, '2019-03-20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booktype`
+--
+
+CREATE TABLE `booktype` (
+  `booktype_id` int(11) NOT NULL,
+  `booktype_name` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `booktype`
+--
+
+INSERT INTO `booktype` (`booktype_id`, `booktype_name`) VALUES
+(1, 'Ekonomi'),
+(2, 'Hukum'),
+(5, 'Matematika');
 
 -- --------------------------------------------------------
 
@@ -229,15 +271,13 @@ INSERT INTO `guestbook` (`guestbook_id`, `member_id`, `date`, `time`) VALUES
 (76, 8, '2019-03-25', '06.04'),
 (77, 8, '2019-03-25', '06.04'),
 (78, 8, '2019-03-25', '06.05'),
-<<<<<<< HEAD
 (79, 8, '2019-03-25', '06.09'),
 (80, 1, '2019-03-26', '10.45'),
 (81, 2, '2019-03-26', '10.48'),
 (82, 15, '2019-03-27', '15.36'),
 (83, 1, '2019-04-08', '07.49');
-=======
 (79, 8, '2019-03-25', '06.09');
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
+(79, 8, '2019-03-25', '06.09');
 
 -- --------------------------------------------------------
 
@@ -260,7 +300,6 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`member_id`, `id_number`, `name`, `sex`, `occupation`, `instance`, `address`) VALUES
-<<<<<<< HEAD
 (1, '1555301022', 'Elok Anugrah Alkhaliq', 'Laki-laki', 'Pelajar / Mahasiswa', 'Politeknik Caltex Riau', 'Jl. Buntu'),
 (2, '1555301078', 'Selvia Firdaus', 'Perempuan', 'Pelajar / Mahasiswa', 'Institut Teknologi Bandung', 'Jl. Lurus'),
 (3, '1455301082', 'Wahyu Adhi', 'Laki-laki', 'Pelajar / Mahasiswa', 'politeknik caltex riau', 'Jl. Lobang'),
@@ -270,7 +309,6 @@ INSERT INTO `member` (`member_id`, `id_number`, `name`, `sex`, `occupation`, `in
 (2, '1555301078', 'Selvia Firdaus', 'Perempuan', 'Pelajar/Mahasiswa', 'Institut Teknologi Bandung', 'Jl. Lurus'),
 (3, '1455301082', 'Wahyu Adhi', 'Laki-laki', 'Pelajar/Mahasiswa', 'politeknik caltex riau', 'Jl. Lobang'),
 (4, '145590', 'Bayu Setiawan', 'Laki-laki', 'Pegawai/Karyawan', 'Bank Indoensia', 'XYZ'),
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
 (5, '132290', 'Dara Ayu', 'Perempuan', 'Pelajar / Mahasiswa', 'Bank Riau', 'xyz'),
 (6, '445531228854', 'Delvian Zunaidi', 'Laki-laki', 'Umum', 'Lainnya', 'xyz'),
 (8, 's', 's', 'Tidak diketahui', 'Umum', 'Lainnya', 's'),
@@ -278,12 +316,10 @@ INSERT INTO `member` (`member_id`, `id_number`, `name`, `sex`, `occupation`, `in
 (11, 'i', 'i', 'Laki-laki', 'Karyawan Swasta', 'i', 'i'),
 (12, 'p', 'p', 'Perempuan', 'Pelajar / Mahasiswa', 'p', 'p'),
 (13, 'g', 'g', 'Perempuan', 'Pegawai Negeri Sipil', 'g', 'g'),
-<<<<<<< HEAD
 (14, 'e', 'e', 'Laki-laki', 'Pelajar / Mahasiswa', 'e', 'e'),
 (15, '4555', 'test', 'Laki-laki', 'Pelajar / Mahasiswa', 'Universitas Riau', 'Jl. Buntu No. 2');
-=======
 (14, 'e', 'e', 'Laki-laki', 'Pelajar / Mahasiswa', 'e', 'e');
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
+(14, 'e', 'e', 'Laki-laki', 'Pelajar / Mahasiswa', 'e', 'e');
 
 -- --------------------------------------------------------
 
@@ -312,11 +348,10 @@ INSERT INTO `occupation` (`occupation_id`, `occupation_name`) VALUES
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Struktur dari tabel `token`
+-- Table structure for table `token`
 =======
 -- Table structure for table `token`
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
 --
 
 CREATE TABLE `token` (
@@ -327,7 +362,6 @@ CREATE TABLE `token` (
   `time` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-<<<<<<< HEAD
 --
 -- Dumping data untuk tabel `token`
 --
@@ -335,8 +369,6 @@ CREATE TABLE `token` (
 INSERT INTO `token` (`token_id`, `token`, `salt`, `email`, `time`) VALUES
 (2, 'abWWZMz3Fdyw7HcQFmnlxGbhJqozMzZmZDE1NzY0NTE4NGJlZDYyZmRmNWUzM2ZiZTQ=', '336fd157645184bed62fdf5e33fbe4', 'elok15ti@mahasiswa.pcr.ac.id', '09.18');
 
-=======
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
 --
 -- Indexes for dumped tables
 --
@@ -417,25 +449,32 @@ ALTER TABLE `booktype`
   MODIFY `booktype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `bookrecomendation`
+--
+ALTER TABLE `bookrecomendation`
+  MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `booktype`
+--
+ALTER TABLE `booktype`
+  MODIFY `booktype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `guestbook`
 --
 ALTER TABLE `guestbook`
-<<<<<<< HEAD
   MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
-=======
   MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-<<<<<<< HEAD
   MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-=======
+
   MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
 --
 -- AUTO_INCREMENT for table `occupation`
 --
@@ -451,9 +490,13 @@ ALTER TABLE `token`
 --
 
 --
-<<<<<<< HEAD
 -- Ketidakleluasaan untuk tabel `bookrecomendation`
-=======
+-- AUTO_INCREMENT for table `token`
+--
+ALTER TABLE `token`
+  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `token`
 --
 ALTER TABLE `token`
@@ -461,18 +504,21 @@ ALTER TABLE `token`
 
 --
 -- Constraints for dumped tables
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
 --
 ALTER TABLE `bookrecomendation`
   ADD CONSTRAINT `fk_member_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
 
 --
-<<<<<<< HEAD
 -- Ketidakleluasaan untuk tabel `guestbook`
 --
 ALTER TABLE `guestbook`
   ADD CONSTRAINT `fk_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
-=======
+-- Constraints for table `bookrecomendation`
+--
+ALTER TABLE `bookrecomendation`
+  ADD CONSTRAINT `fk_member_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `bookrecomendation`
 --
 ALTER TABLE `bookrecomendation`
@@ -484,7 +530,6 @@ ALTER TABLE `bookrecomendation`
 ALTER TABLE `guestbook`
   ADD CONSTRAINT `fk_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
 COMMIT;
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

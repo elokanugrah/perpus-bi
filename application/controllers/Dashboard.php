@@ -19,10 +19,6 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-<<<<<<< HEAD
-
-=======
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
         $dates = date("d-M-Y", strtotime('Monday this week')).' - '.date("d-M-Y");
         $date = date("Y-m-d", strtotime('Monday this week')).' - '.date("Y-m-d");
         $guest=$this->Guest_model->get_count();

@@ -183,10 +183,7 @@
                           ]
                       },
                       yAxis: {
-<<<<<<< HEAD
                           allowDecimals: false,
-=======
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
                           title: {
                               text: 'Kunjungan'
                           }
@@ -234,10 +231,7 @@
                           ]
                       },
                       yAxis: {
-<<<<<<< HEAD
                           allowDecimals: false,
-=======
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
                           title: {
                               text: 'Kunjungan'
                           }
@@ -285,10 +279,7 @@
                           ]
                       },
                       yAxis: {
-<<<<<<< HEAD
                           allowDecimals: false,
-=======
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
                           title: {
                               text: 'Kunjungan'
                           }
@@ -336,10 +327,7 @@
                           ]
                       },
                       yAxis: {
-<<<<<<< HEAD
                           allowDecimals: false,
-=======
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
                           title: {
                               text: 'Kunjungan'
                           }
@@ -650,7 +638,6 @@
                             series: {
                                 dataLabels: {
                                     enabled: true,
-<<<<<<< HEAD
                                     format: '{point.name}: {point.percentage:.1f}%',
                                     distance: -50,
                                     filter: {
@@ -658,9 +645,8 @@
                                         operator: '>',
                                         value: 4
                                     }
-=======
                                     format: '{point.name}: {point.percentage:.1f}%'
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
+                                    format: '{point.name}: {point.percentage:.1f}%'
                                 }
                             }
                         },
@@ -752,11 +738,9 @@
                       <div class="progress-bar progress-bar-<?php echo $color[$key] ?>" style="width: <?php echo (100*$row->total)/$data_countbook->total; ?>%"></div>
                     </div>
                   </td>
-<<<<<<< HEAD
                   <td><span class="badge bg-<?php echo $color[$key] ?>"><?php echo round((100*$row->total)/$data_countbook->total, 2); ?>%</span></td>
-=======
                   <td><span class="badge bg-<?php echo $color[$key] ?>"><?php echo (100*$row->total)/$data_countbook->total; ?>%</span></td>
->>>>>>> 7777701eaed8af899efa4d013b85b213ca29fe9a
+                  <td><span class="badge bg-<?php echo $color[$key] ?>"><?php echo (100*$row->total)/$data_countbook->total; ?>%</span></td>
                   <td align="center">
                     <a href="<?php echo site_url('BookrecomendationList/type/'.$row->type) ?>"><button type="button" class="btn btn-sm badge mt-1"><i class="fa fa-eye"></i></button></a>
                   </td>
