@@ -6,7 +6,7 @@
 	{
 		public $nama_table	='guestbook';
 		public $id			='guestbook_id';
-		public $order		='ASC';
+		public $order		='DESC';
 
 		function __construct()
 		{
@@ -22,6 +22,22 @@
 		function data_adding($data)
 		{
 			return $this->db->insert($this->nama_table,$data);
+		}
+
+		function getdata_by_id($id)
+		{
+			$this->db->select("guestbook.guestbook_id, member.id_number, member.name, YEAR(guestbook.date) AS year, MONTH(guestbook.date) AS month, MONTHNAME(guestbook.date) AS month_name");
+			$this->db->join('member', 'member.member_id=guestbook.member_id');
+			$this->db->where($this->id,$id);
+			return $this->db->get($this->nama_table)->row();
+		}
+
+		function getdata_by_memberid($id)
+		{
+			$this->db->where('member_id',$id);
+			$this->db->where('date', date("Y-m-d"));
+			$this->db->order_by($this->id,$this->order);
+			return $this->db->get($this->nama_table)->row();
 		}
 
 		function data_yearandcount()
@@ -52,12 +68,30 @@
 
 		function data_by_yearmonth($yr, $mt)
 		{
-			$this->db->select("member.id_number, member.name, guestbook.date, guestbook.time");
+			$this->db->select("guestbook.guestbook_id, member.id_number, member.name, guestbook.date, guestbook.time");
 			$this->db->from($this->nama_table);
 			$this->db->join('member', 'member.member_id=guestbook.member_id');
 			$this->db->where('YEAR(date)', $yr);
 			$this->db->where('MONTH(date)', $mt);
+			$this->db->order_by($this->id,$this->order);
 			return $this->db->get()->result();
+		}
+
+		function data_by_date($date)
+		{
+			$this->db->select("DAY(date) AS day, MONTHNAME(date) AS month, YEAR(date) AS year, COUNT(guestbook_id) AS total");
+			$this->db->where('date', $date);
+			return $this->db->get($this->nama_table)->row();
+		}
+
+		function data_by_week()
+		{
+			$start = date("Y-m-d", strtotime('-7 days'));
+			$end = date("Y-m-d");
+			$this->db->select("COUNT(guestbook_id) AS total");
+			$this->db->where('date >=', $start);
+			$this->db->where('date <=', $end);
+			return $this->db->get($this->nama_table)->row();
 		}
 
 		function data_occupation($date)
@@ -86,5 +120,18 @@
 			$this->db->group_by('member.instance');
 			return $this->db->get()->result();
 		}
+
+		function cek_member_today($m_id, $date)
+		{
+			$this->db->where('member_id',$m_id);
+			$this->db->where('date',$date);
+			return $this->db->get($this->nama_table)->row();
+		}
+
+		function delete_data($id)
+    	{
+        	$this->db->where($this->id,$id);
+        	$this->db->delete($this->nama_table);
+    	}
 	}
 	?>

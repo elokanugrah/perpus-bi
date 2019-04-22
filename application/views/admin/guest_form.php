@@ -8,9 +8,8 @@
         <small>pengunjung perpustakaan</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="<?php echo site_url('Guest') ?>"><i class="fa fa-table"></i> Pengunjung</a></li>
+        <li class="<?php echo active_link('Guest') ?>"><a href="#">Form</a></li>
       </ol>
     </section>
 
@@ -38,7 +37,7 @@
                 <!-- /.input group -->
               </div>
               <!-- /.form group -->
-              <div class="form-group col-xs-6">
+              <div class="col-xs-6">
                 <label>Nama Pengunjung</label>
 
                 <div class="input-group">
@@ -75,7 +74,6 @@
               </div>
               <div class="form-group col-xs-6">
                 <label>Instansi</label>
-
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-university"></i>

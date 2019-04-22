@@ -8,6 +8,10 @@ class Guest extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+        if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
+        {
+            redirect('/');
+        }
 		$this->load->model('Guest_model');
         $this->load->model('Occupation_model');
 	}
@@ -53,6 +57,14 @@ class Guest extends CI_Controller
         $id=$this->input->post('member_id');
         $this->Guest_model->edit_data($id,$data);
         $this->session->set_flashdata('edit_success', 'Data dengan nomor identitas '.$this->input->post('id_number').' a/n '.$this->input->post('name').' berhasil diubah!');
+        redirect(site_url('Guest'));
+    }
+
+    function delete($id)
+    {
+        $guest = $this->Guest_model->getdata_by_id($id);
+        $this->Guest_model->delete_data($id);
+        $this->session->set_flashdata('delete_success', 'Data dengan nomor identitas '.$guest->id_number.' a/n '.$guest->name.' berhasil dihapus!');
         redirect(site_url('Guest'));
     }
 }

@@ -8,36 +8,32 @@
         <small>status pekerjaan</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li class="<?php echo active_link('Occupation') ?>"><a href="#"><i class="fa fa-table"></i> Pekerjaan</a></li>
       </ol>
     </section>
 
     <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <?php if ($this->session->has_userdata('input_success')) { ?>
-          <div class="alert alert-success alert-dismissible" style="margin-top:30px;">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('input_success'); ?>
-            </div>
-            <?php } ?>
-          <?php if ($this->session->has_userdata('edit_success')) { ?>
-          <div class="alert alert-info alert-dismissible" style="margin-top:30px;">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('edit_success'); ?>
-            </div>
-            <?php } ?>
-            <?php if ($this->session->has_userdata('delete_success')) { ?>
-          <div class="alert alert-danger alert-dismissible" style="margin-top:30px;">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('delete_success'); ?>
-            </div>
-            <?php } ?>
+    <div class="col-xs-12">
+      <?php if ($this->session->has_userdata('input_success')) { ?>
+      <div class="alert alert-success alert-dismissible" style="margin-top:30px;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('input_success'); ?>
         </div>
-      </div>
+        <?php } ?>
+      <?php if ($this->session->has_userdata('edit_success')) { ?>
+      <div class="alert alert-info alert-dismissible" style="margin-top:30px;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('edit_success'); ?>
+        </div>
+        <?php } ?>
+        <?php if ($this->session->has_userdata('delete_success')) { ?>
+      <div class="alert alert-danger alert-dismissible" style="margin-top:30px;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('delete_success'); ?>
+        </div>
+        <?php } ?>
+    </div>
+    <section class="content">
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -50,6 +46,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>No</th>
                   <th>Status Pekerjaan</th>
                   <th>Aksi</th>
                 </tr>
@@ -57,6 +54,7 @@
                 <tbody>
                 <?php foreach ($data_occupation as $key => $row) {?>
                 <tr>
+                  <td><?php echo $key+1; ?></td>
                   <td><?php echo $row->occupation_name; ?></td>
                   <td align="center">
                     <button type="button" class="btn btn-info btn-sm badge mt-1" data-toggle="modal" data-target="#modal-default<?php echo $row->occupation_id; ?>"><i class="fa fa-pencil"></i></button>

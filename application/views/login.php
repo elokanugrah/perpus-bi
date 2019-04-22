@@ -6,6 +6,24 @@
         <img src="<?php echo base_url() ?>assets/dist/img/perpustakaan.png" height="64">
     </div>
     <!-- /.login-logo -->
+    <?php if ($this->session->has_userdata('edit_success')) { ?>
+     <div class="alert alert-success alert-dismissible" style="margin-top:30px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('edit_success'); ?>
+      </div>
+    <?php } ?>
+    <?php if ($this->session->has_userdata('email_success')) { ?>
+     <div class="alert alert-info alert-dismissible" style="margin-top:30px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-info"></i><?php echo $this->session->flashdata('email_success'); ?>
+      </div>
+    <?php } ?>
+    <?php if ($this->session->has_userdata('login_message')) { ?>
+     <div class="alert alert-danger alert-dismissible" style="margin-top:30px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <i class="icon fa fa-ban"></i><?php echo $this->session->flashdata('login_message'); ?>
+      </div>
+    <?php } ?>
     <div class="login-box-body">
         <p class="login-box-msg">Masuk untuk memulai sesi anda</p>
         <div class="main_panel">
@@ -20,18 +38,36 @@
             </div>
             <div class="social-auth-links">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
-              <?php if ($this->session->has_userdata('login_message')) { ?>
-               <div class="alert alert-danger alert-dismissible" style="margin-top:30px;">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <i class="icon fa fa-ban"></i><?php echo $this->session->flashdata('login_message'); ?>
-                </div>
-              <?php } ?>
           </div>
+           <a href="" data-toggle="modal" data-target="#modal-reset">Lupa password?</a>
       </form>
   </div>
 </div>
 </div>
 <!-- /.login-box-body -->
+<div class="modal modal-info fade" id="modal-reset">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form role="form" action="<?php echo site_url('ResetPassword/reset'); ?>" method="post">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Hapus Data Pengunjung</h4>
+        </div>
+        <div class="modal-body">
+          <p>Pemberitahuan reset password akan dikirimkan ke email admin buku tamu digital perpustakaan Bank Indonesia Riau</p>
+          <small>Dengan memilih kirim maka pemberitahuan akan dikirimkan ke email yang terdaftar.</small>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-outline">Kirim</button>
+        </div>
+        </form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 </div>
 <!-- /.login-box -->
 
