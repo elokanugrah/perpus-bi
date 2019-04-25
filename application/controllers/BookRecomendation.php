@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Bookrecomendation extends CI_Controller
+class BookRecomendation extends CI_Controller
 {
 	function __construct()
 	{

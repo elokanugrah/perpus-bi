@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Booktype extends CI_Controller
+class BookType extends CI_Controller
 {
 	function __construct()
 	{
