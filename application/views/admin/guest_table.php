@@ -14,18 +14,24 @@
 
     <!-- Main content -->
     <div class="col-xs-12">
+      <?php if ($this->session->has_userdata('input_success')) { ?>
+        <div class="alert alert-success alert-dismissible" style="margin-top:30px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('input_success'); ?>
+        </div>
+      <?php } ?>
       <?php if ($this->session->has_userdata('edit_success')) { ?>
-      <div class="alert alert-info alert-dismissible" style="margin-top:30px;">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <div class="alert alert-info alert-dismissible" style="margin-top:30px;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('edit_success'); ?>
         </div>
-        <?php } ?>
-        <?php if ($this->session->has_userdata('delete_success')) { ?>
+      <?php } ?>
+      <?php if ($this->session->has_userdata('delete_success')) { ?>
       <div class="alert alert-danger alert-dismissible" style="margin-top:30px;">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('delete_success'); ?>
-        </div>
-        <?php } ?>
+        <i class="icon fa fa-check-circle"></i><?php echo $this->session->flashdata('delete_success'); ?>
+      </div>
+      <?php } ?>
     </div>
     <section class="content">
       <div class="row">
@@ -33,6 +39,8 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Pengunjung Perpustakaan</h3>
+              <a href="<?php echo site_url('Guest/export') ?>" class="btn btn-info btn-sm badge mt-1 pull-right" style="margin-left: 20px;"><span class="fa fa-file-excel-o" style="padding-right: 4px;"></span> Export</a>
+              <a href="<?php echo $import; ?>" class="btn btn-info btn-sm badge mt-1 pull-right"><span class="fa fa-file-excel-o" style="padding-right: 4px;"></span>Import</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -61,11 +69,11 @@
                   <td><?php echo $row->address; ?></td>
                   <td align="center">
                     <a href="<?php echo site_url('Guest/edit/'.$row->member_id) ?>"><button type="button" class="btn btn-info btn-sm badge mt-1"><i class="fa fa-pencil"></i></button></a>
-                    <button type="button" class="btn btn-danger btn-sm badge mt-1" data-toggle="modal" data-target="#modal-delete<?php echo $row->member_id; ?>"><i class="fa fa-trash"></i></button>
+                    <a id="delete-data" href="javascript:void(0)" type="button" class="btn btn-danger btn-sm badge mt-1"  onclick="delete_row('<?php echo $row->member_id; ?>' , '<?php echo $row->id_number; ?>', '<?php echo $row->name; ?>')"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>
                 <?php }?>
-                </tfoot>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->
@@ -77,39 +85,37 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
-    <?php foreach ($data_guest as $key => $row) {?>
-        <div class="modal modal-danger fade" id="modal-delete<?php echo $row->member_id; ?>">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form role="form" action="<?php echo site_url('Guest/delete/'.$row->member_id) ?>" method="post">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Hapus Data Pengunjung</h4>
-              </div>
-              <div class="modal-body">
-                <p>Yakin ingin menghapus pengunjung dengan nomor identitas <?php echo $row->id_number; ?> a/n <?php echo $row->name; ?>?</p>
-                <small>Dengan menghapus data pengunjung tersebut maka data pengunjung pada buku tamu dan buku rekomendasi akan terhapus.</small>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-outline">Hapus</button>
-              </div>
-              </form>
-            </div>
-            <!-- /.modal-content -->
+    <div class="modal modal-danger fade" id="modal-delete">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="delete-row" role="form" action="" method="post">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Hapus Data Pengunjung</h4>
           </div>
-          <!-- /.modal-dialog -->
+          <div class="modal-body">
+            <p>Yakin ingin menghapus pengunjung dengan nomor identitas <span id="id_number"></span> a/n <span id="name"></span>?</p>
+            <small>Dengan menghapus data pengunjung tersebut maka data pengunjung pada buku tamu dan buku rekomendasi akan terhapus.</small>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-outline">Hapus</button>
+          </div>
+          </form>
         </div>
-      <?php }?>
-        <!-- /.modal -->
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
   </div>
   <!-- /.content-wrapper -->
 <?php $this->load->view('headerfooter/footer_admin'); ?>
 <!-- DataTables -->
 <script src="<?php echo base_url() ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url() ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script>
+<script>
   $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
@@ -121,6 +127,15 @@
       'autoWidth'   : false
     })
   })
+
+  function delete_row(id, id_number, name)
+  {
+    $('#delete-row').attr('action', '<?php echo site_url('Guest/delete/')?>' + id);
+    $('#modal-delete').modal('show'); // show bootstrap modal when complete loaded
+    $('#id_number').text(id_number);
+    $('#name').text(name);
+    $('#modal-delete')[0].reset(); // reset form on modals
+  }
 </script>
 </body>
 </html>

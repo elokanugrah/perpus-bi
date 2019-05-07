@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class BookType extends CI_Controller
+class Booktype extends CI_Controller
 {
 	function __construct()
 	{
@@ -50,7 +50,7 @@ class BookType extends CI_Controller
     {
         $booktype = $this->Booktype_model->getdata_by_id($id);
         $this->Booktype_model->delete_data($id);
-        $this->session->set_flashdata('delete_success', 'Data dengan jenis buku '.$Booktype->booktype_name.' berhasil dihapus!');
+        $this->session->set_flashdata('delete_success', 'Data dengan jenis buku '.$booktype->booktype_name.' berhasil dihapus!');
         redirect(site_url('Booktype'));
     }
 }

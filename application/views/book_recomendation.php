@@ -19,7 +19,7 @@
       </div>
     <?php } ?>
     <div class="login-box-body">
-        <p class="login-box-msg">Rekomendasi Buku Perpustakaan</p>
+        <p class="login-box-msg">Mengajukan Buku Perpustakaan</p>
         <div class="main_panel">
             <form role="form" action="" method="post">
             <div class="form-group has-feedback">
@@ -94,6 +94,31 @@
     })
     //Money Euro
     $('[data-mask]').inputmask()
+
+    $('[name="id_number"]').on( "keyup", function( event ) {
+      
+      
+      // When user select text in the document, also abort.
+      var selection = window.getSelection().toString();
+      if ( selection !== '' ) {
+        return;
+      }
+      
+      // When the arrow keys are pressed, abort.
+      if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
+        return;
+      }
+      
+      var $this = $(this);
+      var input = $this.val();
+          input = input.replace(/[\D\s\._\-]+/g, '');
+
+      input = input ? parseInt( input, 10 ) : 0;
+      $this.val( function() {
+          return ( input === 0 ) ? "" : input;
+      });
+    
+    });
 })
 </script>
 </body>

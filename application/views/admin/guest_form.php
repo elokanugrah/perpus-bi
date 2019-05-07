@@ -122,6 +122,8 @@
     //Initialize Select2 Elements
     $('.select2').select2()
 
+    $('[name="occupation"]').select2("val", $("#select option:contains('<?php echo $occupation; ?>')").val() )
+
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',

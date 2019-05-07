@@ -29,7 +29,7 @@
         <div class="main_panel">
             <form role="form" action="" method="post">
             <div class="form-group has-feedback">
-                <input type="text" name="id_number" class="form-control" placeholder="Nomor Identitas" required>
+                <input type="text" name="id_number" id="id_number" class="form-control" placeholder="Nomor Identitas" required>
                 <span class="glyphicon glyphicon-credit-card form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -39,7 +39,7 @@
             <div class="social-auth-links">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
             </div>
-            <a href="<?php echo site_url('BookRecomendation') ?>">Rekomendasikan buku baru</a>
+            <a href="<?php echo site_url('BookRecomendation') ?>">Mengajukan buku baru</a>
       </form>
   </div>
   <?php if ($this->session->has_userdata('guest_message')) { ?>
@@ -118,6 +118,45 @@
       increaseArea: '20%' /* optional */
   })
 })
+// Restricts input for the given textbox to the given inputFilter.
+/*function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      }
+    });
+  });
+}
+setInputFilter(document.getElementById("id_number"), function(value) {
+	return /^\d*$/.test(value); });*/
+  $('[name="id_number"]').on( "keyup", function( event ) {
+    // When user select text in the document, also abort.
+    var selection = window.getSelection().toString();
+    if ( selection !== '' ) {
+      return;
+    }
+    
+    // When the arrow keys are pressed, abort.
+    if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
+      return;
+    }
+    
+    var $this = $(this);
+    var input = $this.val();
+        input = input.replace(/[\D\s\._\-]+/g, '');
+
+    input = input ? parseInt( input, 10 ) : 0;
+    $this.val( function() {
+        return ( input === 0 ) ? "" : input;
+    });
+  
+  });
 </script>
 </body>
 </html>

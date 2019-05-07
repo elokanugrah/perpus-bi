@@ -9,7 +9,7 @@
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Version 2.0</small>
+        <small>Buku tamu perpustakaan KPw BI Riau</small>
       </h1>
       <ol class="breadcrumb">
         <li class="<?php echo active_link('Dashboard'); ?>"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -57,7 +57,7 @@
             <span class="info-box-icon bg-green"><i class="glyphicon glyphicon-book"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Rekomendasi</span>
+              <span class="info-box-text">Request</span>
               <span class="info-box-number"><?php echo $data_countbook->total; ?></span>
               <small>buku</small>
             </div>
@@ -472,16 +472,17 @@
                 <div class="col-md-10">
                   <label>Tanggal</label>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                   <div class="input-group date">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
                     <input type="text" name="date" class="form-control pull-right" id="reservation" value="<?php echo $date; ?>">
+                    <div class="input-group-addon">
+                      <button type="submit" class="btn btn-info badge btn-sm mt-1">Lihat</button>
+                      <a href="<?php echo site_url('Dashboard') ?>" class="btn btn-default btn-sm badge mt-1">Reset</a>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-2">
-                  <button type="submit" class="btn btn-info btn-block btn-flat">Lihat</button>
                 </div>
                 <!-- /.input group -->
               </div>
@@ -584,7 +585,7 @@
           <!-- MAP & BOX PANE -->
           <div class="box box-warning">
             <div class="box-header with-border">
-              <h3 class="box-title">Rekomendasi Buku</h3>
+              <h3 class="box-title">Request Buku</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -598,16 +599,17 @@
                 <div class="col-md-10">
                   <label>Tanggal</label>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                   <div class="input-group date">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
                     <input type="text" name="date1" class="form-control pull-right" id="reservation1" value="<?php echo $date1; ?>">
+                    <div class="input-group-addon">
+                      <button type="submit" class="btn btn-warning badge btn-sm mt-1">Lihat</button>
+                      <a href="<?php echo site_url('Dashboard') ?>" class="btn btn-default btn-sm badge mt-1">Reset</a>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-2">
-                  <button type="submit" class="btn btn-warning btn-block btn-flat">Lihat</button>
                 </div>
                 <!-- /.input group -->
               </div>
@@ -628,7 +630,7 @@
                             type: 'pie'
                         },
                         title: {
-                            text: 'Kriteria buku yang direkomendasikan'
+                            text: 'Kriteria buku yang diajukan'
                         },
                         subtitle: {
                             text: 'Pilih kolom untuk melihat judul buku'
@@ -644,8 +646,6 @@
                                         operator: '>',
                                         value: 4
                                     }
-                                    format: '{point.name}: {point.percentage:.1f}%'
-                                    format: '{point.name}: {point.percentage:.1f}%'
                                 }
                             }
                         },
@@ -656,7 +656,7 @@
                         },
                         "series": [
                             {
-                            name: 'Rekomendasi',
+                            name: 'Pengajuan',
                             colorByPoint: true,
                             data: [
                             <?php
@@ -709,7 +709,7 @@
           <!-- MAP & BOX PANE -->
           <div class="box box-success">
             <div class="box-header with-border">
-              <h3 class="box-title">Rekomendasi Buku</h3>
+              <h3 class="box-title">Request Buku</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -738,8 +738,6 @@
                     </div>
                   </td>
                   <td><span class="badge bg-<?php echo $color[$key] ?>"><?php echo round((100*$row->total)/$data_countbook->total, 2); ?>%</span></td>
-                  <td><span class="badge bg-<?php echo $color[$key] ?>"><?php echo (100*$row->total)/$data_countbook->total; ?>%</span></td>
-                  <td><span class="badge bg-<?php echo $color[$key] ?>"><?php echo (100*$row->total)/$data_countbook->total; ?>%</span></td>
                   <td align="center">
                     <a href="<?php echo site_url('BookrecomendationList/type/'.$row->type) ?>"><button type="button" class="btn btn-sm badge mt-1"><i class="fa fa-eye"></i></button></a>
                   </td>
