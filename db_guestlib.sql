@@ -3,15 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
-
--- Generation Time: 08 Apr 2019 pada 04.15
+-- Generation Time: 05 Mei 2019 pada 11.03
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
-
--- Generation Time: Mar 25, 2019 at 12:09 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -25,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_guestlib`
 --
-CREATE DATABASE IF NOT EXISTS `db_guestlib` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `db_guestlib`;
 
 -- --------------------------------------------------------
 
@@ -53,96 +45,6 @@ INSERT INTO `admin` (`admin_id`, `username`, `encrypted_password`, `salt`, `name
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bookrecomendation`
---
-
-CREATE TABLE `bookrecomendation` (
-  `bookrecomendation_id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL,
-  `type` varchar(70) NOT NULL,
-  `title` varchar(145) NOT NULL,
-  `author` varchar(70) NOT NULL,
-  `version` varchar(50) NOT NULL,
-  `publisher` varchar(70) NOT NULL,
-  `publication_year` int(4) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `bookrecomendation`
---
-
-INSERT INTO `bookrecomendation` (`bookrecomendation_id`, `member_id`, `type`, `title`, `author`, `version`, `publisher`, `publication_year`, `date`) VALUES
-(1, 1, 'Ekonomi', 'Das Kapital', 'Karl Marx', '', '', 1867, '2019-03-20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `booktype`
---
-
-CREATE TABLE `booktype` (
-  `booktype_id` int(11) NOT NULL,
-  `booktype_name` varchar(70) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `booktype`
---
-
-INSERT INTO `booktype` (`booktype_id`, `booktype_name`) VALUES
-(1, 'Ekonomi'),
-(2, 'Hukum'),
-(5, 'Matematika');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bookrecomendation`
---
-
-CREATE TABLE `bookrecomendation` (
-  `bookrecomendation_id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL,
-  `type` varchar(70) NOT NULL,
-  `title` varchar(145) NOT NULL,
-  `author` varchar(70) NOT NULL,
-  `version` varchar(50) NOT NULL,
-  `publisher` varchar(70) NOT NULL,
-  `publication_year` int(4) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `bookrecomendation`
---
-
-INSERT INTO `bookrecomendation` (`bookrecomendation_id`, `member_id`, `type`, `title`, `author`, `version`, `publisher`, `publication_year`, `date`) VALUES
-(1, 1, 'Ekonomi', 'Das Kapital', 'Karl Marx', '', '', 1867, '2019-03-20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `booktype`
---
-
-CREATE TABLE `booktype` (
-  `booktype_id` int(11) NOT NULL,
-  `booktype_name` varchar(70) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `booktype`
---
-
-INSERT INTO `booktype` (`booktype_id`, `booktype_name`) VALUES
-(1, 'Ekonomi'),
-(2, 'Hukum'),
-(5, 'Matematika');
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `bookrecomendation`
 --
 
@@ -165,7 +67,11 @@ CREATE TABLE `bookrecomendation` (
 INSERT INTO `bookrecomendation` (`bookrecomendation_id`, `member_id`, `type`, `title`, `author`, `version`, `publisher`, `publication_year`, `date`) VALUES
 (1, 1, 'Ekonomi', 'Das Kapital', 'Karl Marx', '', '', 1867, '2019-03-20'),
 (2, 1, 'Ekonomi', 'ggg', 'ggg', '', '', 2012, '2019-03-26'),
-(3, 15, 'Hukum', 'Test', 'test jjj', '', '', 1997, '2019-03-27');
+(3, 15, 'Hukum', 'Test', 'test jjj', '', '', 1997, '2019-03-27'),
+(4, 1, 'Ekonomi', 'ggg', 'ggg', '', 'r', 1905, '2019-04-26'),
+(5, 1, 'Ekonomi', 'ggg', 'ggg', '', 'r', 1905, '2019-04-26'),
+(6, 1, 'Ekonomi', 'Das Kapital', 'Karl Marx', '', 'r', 0, '2019-04-20'),
+(7, 1, 'Ekonomi', 'ggg', 'ggg', '2', 'r', 1905, '2019-04-26');
 
 -- --------------------------------------------------------
 
@@ -205,79 +111,116 @@ CREATE TABLE `guestbook` (
 --
 
 INSERT INTO `guestbook` (`guestbook_id`, `member_id`, `date`, `time`) VALUES
-(10, 5, '2018-01-01', '12.11'),
-(11, 3, '2018-01-01', '12.12'),
-(12, 1, '2018-01-02', '12.30'),
-(13, 3, '2018-01-03', '12.05'),
-(14, 1, '2018-01-03', '12.07'),
-(15, 6, '2018-02-03', '10.00'),
-(16, 5, '2018-02-03', '11.12'),
-(17, 4, '2018-03-03', '12.12'),
-(18, 5, '2018-03-05', '12.12'),
-(19, 5, '2018-04-03', '12.12'),
-(20, 4, '2018-04-03', '12.15'),
-(21, 6, '2018-05-03', '12.15'),
-(22, 2, '2018-06-03', '12.15'),
-(23, 5, '2018-07-03', '12.12'),
-(24, 4, '2018-07-03', '12.15'),
-(25, 3, '2018-07-03', '12.20'),
-(26, 5, '2018-08-03', '12.30'),
-(27, 4, '2018-09-03', '13.00'),
-(28, 6, '2018-10-03', '14.20'),
-(29, 6, '2018-10-30', '15.30'),
-(30, 3, '2018-10-30', '11.20'),
-(31, 1, '2018-11-30', '12.12'),
-(32, 3, '2018-11-20', '12.12'),
-(33, 2, '2018-11-20', '12.12'),
-(34, 4, '2018-11-22', '11.12'),
-(35, 4, '2019-01-01', '12.12'),
-(36, 1, '2019-01-24', '12.12'),
-(37, 2, '2019-03-01', '14.14'),
-(39, 8, '2019-03-17', '21.51'),
-(40, 1, '2019-03-17', '21.52'),
-(41, 1, '2019-03-18', '08.58'),
-(42, 2, '2019-03-18', '09.01'),
-(43, 1, '2019-03-18', '14.00'),
-(45, 9, '2019-03-19', '09.06'),
-(47, 8, '2019-03-19', '09.42'),
-(48, 8, '2019-03-19', '09.48'),
-(49, 8, '2019-03-19', '09.49'),
-(50, 8, '2019-03-19', '09.49'),
-(51, 8, '2019-03-19', '09.49'),
-(52, 1, '2019-03-19', '19.42'),
-(53, 8, '2019-03-19', '19.43'),
-(54, 8, '2019-03-19', '20.19'),
-(55, 8, '2019-03-19', '20.19'),
-(56, 8, '2019-03-19', '20.19'),
-(57, 8, '2019-03-19', '20.19'),
-(58, 8, '2019-03-19', '20.23'),
-(59, 13, '2019-03-19', '21.22'),
-(60, 13, '2019-03-19', '21.23'),
-(61, 13, '2019-03-19', '21.24'),
-(62, 13, '2019-03-19', '21.24'),
-(63, 1, '2019-03-19', '21.25'),
-(64, 13, '2019-03-19', '21.39'),
-(65, 1, '2019-03-20', '20.17'),
-(66, 1, '2019-03-24', '22.49'),
-(67, 1, '2019-03-24', '22.49'),
-(68, 1, '2019-03-24', '22.53'),
-(69, 8, '2019-03-24', '22.54'),
-(70, 8, '2019-03-24', '22.54'),
-(71, 8, '2019-03-24', '22.55'),
-(72, 8, '2019-03-24', '22.59'),
-(73, 8, '2019-03-24', '22.59'),
-(74, 8, '2019-03-25', '06.03'),
-(75, 8, '2019-03-25', '06.04'),
-(76, 8, '2019-03-25', '06.04'),
-(77, 8, '2019-03-25', '06.04'),
-(78, 8, '2019-03-25', '06.05'),
-(79, 8, '2019-03-25', '06.09'),
-(80, 1, '2019-03-26', '10.45'),
-(81, 2, '2019-03-26', '10.48'),
-(82, 15, '2019-03-27', '15.36'),
-(83, 1, '2019-04-08', '07.49');
-(79, 8, '2019-03-25', '06.09');
-(79, 8, '2019-03-25', '06.09');
+(108, 1, '2019-04-17', '03:01'),
+(109, 2, '2019-04-16', '03:01'),
+(110, 3, '2019-04-15', '03:01'),
+(111, 4, '2019-04-14', '03:01'),
+(112, 5, '2019-04-13', '03:01'),
+(113, 6, '2019-04-11', '03:01'),
+(114, 6, '2019-04-11', '12:13'),
+(115, 18, '2019-04-15', '16:12'),
+(117, 20, '2019-04-13', '14:12'),
+(120, 18, '2019-04-15', '16:12'),
+(121, 1, '2019-04-15', '16:12'),
+(122, 1, '2019-04-12', '12:12'),
+(123, 1, '2019-04-11', '12:12'),
+(124, 1, '2019-04-15', '16:12'),
+(125, 1, '2019-04-14', '15:12'),
+(126, 1, '2019-04-13', '14:12'),
+(127, 1, '2019-04-12', '13:12'),
+(128, 1, '2019-04-11', '12:12'),
+(129, 1, '2019-11-11', '12:12'),
+(132, 15, '2019-03-27', '08:01'),
+(133, 2, '2019-03-26', '11:01'),
+(134, 1, '2019-03-26', '10:01'),
+(135, 8, '2019-03-25', '02:01'),
+(136, 8, '2019-03-25', '01:01'),
+(137, 8, '2019-03-25', '00:01'),
+(138, 8, '2019-03-25', '00:01'),
+(139, 8, '2019-03-25', '00:01'),
+(140, 8, '2019-03-25', '00:01'),
+(141, 8, '2019-03-24', '14:01'),
+(142, 8, '2019-03-24', '14:01'),
+(143, 8, '2019-03-24', '13:01'),
+(144, 8, '2019-03-24', '12:01'),
+(145, 8, '2019-03-24', '12:01'),
+(146, 1, '2019-03-24', '12:01'),
+(147, 1, '2019-03-24', '11:01'),
+(148, 1, '2019-03-24', '11:01'),
+(149, 1, '2019-03-20', '04:01'),
+(150, 13, '2019-03-19', '09:01'),
+(151, 1, '2019-03-19', '06:01'),
+(152, 13, '2019-03-19', '05:01'),
+(153, 13, '2019-03-19', '05:01'),
+(154, 13, '2019-03-19', '05:01'),
+(155, 13, '2019-03-19', '05:01'),
+(156, 8, '2019-03-19', '05:01'),
+(157, 8, '2019-03-19', '04:01'),
+(158, 8, '2019-03-19', '04:01'),
+(159, 8, '2019-03-19', '04:01'),
+(160, 8, '2019-03-19', '04:01'),
+(161, 8, '2019-03-19', '10:01'),
+(162, 1, '2019-03-19', '10:01'),
+(163, 8, '2019-03-19', '11:01'),
+(164, 8, '2019-03-19', '11:01'),
+(165, 8, '2019-03-19', '11:01'),
+(166, 8, '2019-03-19', '11:01'),
+(167, 8, '2019-03-19', '10:01'),
+(168, 9, '2019-03-19', '01:01'),
+(169, 1, '2019-03-18', '00:01'),
+(170, 2, '2019-03-18', '00:01'),
+(171, 1, '2019-03-18', '13:01'),
+(172, 1, '2019-03-17', '12:01'),
+(173, 8, '2019-03-17', '12:01'),
+(174, 2, '2019-03-01', '03:01'),
+(175, 1, '2019-01-24', '02:01'),
+(176, 4, '2019-01-01', '02:01'),
+(177, 4, '2018-11-22', '02:01'),
+(178, 2, '2018-11-20', '02:01'),
+(179, 3, '2018-11-20', '02:01'),
+(180, 1, '2018-11-30', '02:01'),
+(181, 3, '2018-10-30', '04:01'),
+(182, 6, '2018-10-30', '07:01'),
+(183, 6, '2018-10-03', '04:01'),
+(184, 4, '2018-09-03', '00:01'),
+(185, 5, '2018-08-03', '07:01'),
+(186, 3, '2018-07-03', '04:01'),
+(187, 4, '2018-07-03', '03:01'),
+(188, 5, '2018-07-03', '02:01'),
+(189, 2, '2018-06-03', '03:01'),
+(190, 6, '2018-05-03', '03:01'),
+(191, 4, '2018-04-03', '03:01'),
+(192, 5, '2018-04-03', '02:01'),
+(193, 5, '2018-03-05', '02:01'),
+(194, 4, '2018-03-03', '02:01'),
+(195, 5, '2018-02-03', '02:01'),
+(196, 6, '2018-02-03', '00:01'),
+(197, 1, '2018-01-03', '01:01'),
+(198, 3, '2018-01-03', '01:01'),
+(199, 1, '2018-01-02', '07:01'),
+(200, 3, '2018-01-01', '02:01'),
+(201, 5, '2018-01-01', '02:01'),
+(202, 1, '2019-04-08', '11:01'),
+(203, 16, '2019-04-08', '04:01'),
+(204, 1, '2019-04-11', '12:12'),
+(205, 1, '2019-04-12', '13:12'),
+(206, 1, '2019-04-13', '14:12'),
+(207, 1, '2019-04-14', '15:12'),
+(208, 1, '2019-04-15', '16:12'),
+(209, 1, '2019-04-11', '12:12'),
+(210, 1, '2019-04-12', '12:12'),
+(211, 1, '2019-04-15', '16:12'),
+(212, 1, '2019-04-08', '11:01'),
+(213, 16, '2019-04-08', '04:01'),
+(214, 1, '2019-04-11', '12:12'),
+(215, 1, '2019-04-12', '13:12'),
+(216, 1, '2019-04-13', '14:12'),
+(217, 1, '2019-04-14', '15:12'),
+(218, 1, '2019-04-15', '16:12'),
+(219, 1, '2019-04-11', '12:12'),
+(220, 1, '2019-04-12', '12:12'),
+(221, 1, '2019-04-15', '16:12'),
+(222, 1, '2019-05-03', '11:17');
 
 -- --------------------------------------------------------
 
@@ -304,22 +247,20 @@ INSERT INTO `member` (`member_id`, `id_number`, `name`, `sex`, `occupation`, `in
 (2, '1555301078', 'Selvia Firdaus', 'Perempuan', 'Pelajar / Mahasiswa', 'Institut Teknologi Bandung', 'Jl. Lurus'),
 (3, '1455301082', 'Wahyu Adhi', 'Laki-laki', 'Pelajar / Mahasiswa', 'politeknik caltex riau', 'Jl. Lobang'),
 (4, '145590', 'Bayu Setiawan', 'Laki-laki', 'Pegawai / Karyawan', 'Bank Indoensia', 'XYZ'),
-=======
-(1, '1555301022', 'Elok Anugrah Alkhaliq', 'Laki-laki', 'Pelajar/Mahasiswa', 'Politeknik Caltex Riau', 'Jl. Buntu'),
-(2, '1555301078', 'Selvia Firdaus', 'Perempuan', 'Pelajar/Mahasiswa', 'Institut Teknologi Bandung', 'Jl. Lurus'),
-(3, '1455301082', 'Wahyu Adhi', 'Laki-laki', 'Pelajar/Mahasiswa', 'politeknik caltex riau', 'Jl. Lobang'),
-(4, '145590', 'Bayu Setiawan', 'Laki-laki', 'Pegawai/Karyawan', 'Bank Indoensia', 'XYZ'),
 (5, '132290', 'Dara Ayu', 'Perempuan', 'Pelajar / Mahasiswa', 'Bank Riau', 'xyz'),
 (6, '445531228854', 'Delvian Zunaidi', 'Laki-laki', 'Umum', 'Lainnya', 'xyz'),
 (8, 's', 's', 'Tidak diketahui', 'Umum', 'Lainnya', 's'),
 (9, '8888', 'xyz', 'Perempuan', 'Wiraswasta', 'XYZ', 'XYZ'),
 (11, 'i', 'i', 'Laki-laki', 'Karyawan Swasta', 'i', 'i'),
-(12, 'p', 'p', 'Perempuan', 'Pelajar / Mahasiswa', 'p', 'p'),
+(12, 'p', 'p', 'Perempuan', 'Wiraswasta', 'p', 'p'),
 (13, 'g', 'g', 'Perempuan', 'Pegawai Negeri Sipil', 'g', 'g'),
 (14, 'e', 'e', 'Laki-laki', 'Pelajar / Mahasiswa', 'e', 'e'),
-(15, '4555', 'test', 'Laki-laki', 'Pelajar / Mahasiswa', 'Universitas Riau', 'Jl. Buntu No. 2');
-(14, 'e', 'e', 'Laki-laki', 'Pelajar / Mahasiswa', 'e', 'e');
-(14, 'e', 'e', 'Laki-laki', 'Pelajar / Mahasiswa', 'e', 'e');
+(15, '4555', 'test', 'Laki-laki', 'Pelajar / Mahasiswa', 'Universitas Riau', 'Jl. Buntu No. 2'),
+(16, '777', 'test', 'Laki-laki', 'Karyawan Swasta', 'XYZ', 'xyz'),
+(17, '6666', 'asdfasdf', 'asdfas', 'asdfasd', 'asdf', 'sdfasdfas dfadsfasd'),
+(18, '777', 'asdfasdf', 'sdsds', 'sdfas', 'q3weqw', 'zxfzxcadsfadf xczdx'),
+(20, 'df7345634', 'asdfasdf', 'sdsds', 'sdfas', 'sdsds', 'zxfzxcadsfadf xczdx'),
+(21, '1555301022', 's', 'gg', 'gg', 'g', 'g');
 
 -- --------------------------------------------------------
 
@@ -349,9 +290,6 @@ INSERT INTO `occupation` (`occupation_id`, `occupation_name`) VALUES
 
 --
 -- Struktur dari tabel `token`
--- Table structure for table `token`
-=======
--- Table structure for table `token`
 --
 
 CREATE TABLE `token` (
@@ -430,51 +368,22 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bookrecomendation`
 --
 ALTER TABLE `bookrecomendation`
-  MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `booktype`
 --
 ALTER TABLE `booktype`
   MODIFY `booktype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `bookrecomendation`
---
-ALTER TABLE `bookrecomendation`
-  MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `booktype`
---
-ALTER TABLE `booktype`
-  MODIFY `booktype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `bookrecomendation`
---
-ALTER TABLE `bookrecomendation`
-  MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `booktype`
---
-ALTER TABLE `booktype`
-  MODIFY `booktype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `guestbook`
 --
 ALTER TABLE `guestbook`
-  MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
-  MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
-
+  MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `occupation`
 --
@@ -491,19 +400,6 @@ ALTER TABLE `token`
 
 --
 -- Ketidakleluasaan untuk tabel `bookrecomendation`
--- AUTO_INCREMENT for table `token`
---
-ALTER TABLE `token`
-  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `token`
---
-ALTER TABLE `token`
-  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
 --
 ALTER TABLE `bookrecomendation`
   ADD CONSTRAINT `fk_member_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
@@ -513,23 +409,6 @@ ALTER TABLE `bookrecomendation`
 --
 ALTER TABLE `guestbook`
   ADD CONSTRAINT `fk_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
--- Constraints for table `bookrecomendation`
---
-ALTER TABLE `bookrecomendation`
-  ADD CONSTRAINT `fk_member_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `bookrecomendation`
---
-ALTER TABLE `bookrecomendation`
-  ADD CONSTRAINT `fk_member_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `guestbook`
---
-ALTER TABLE `guestbook`
-  ADD CONSTRAINT `fk_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
