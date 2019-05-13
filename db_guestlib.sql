@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.0.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05 Mei 2019 pada 11.03
--- Versi Server: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: May 13, 2019 at 03:20 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,7 +38,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `username`, `encrypted_password`, `salt`, `name`, `email`) VALUES
@@ -45,7 +47,7 @@ INSERT INTO `admin` (`admin_id`, `username`, `encrypted_password`, `salt`, `name
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bookrecomendation`
+-- Table structure for table `bookrecomendation`
 --
 
 CREATE TABLE `bookrecomendation` (
@@ -61,7 +63,7 @@ CREATE TABLE `bookrecomendation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `bookrecomendation`
+-- Dumping data for table `bookrecomendation`
 --
 
 INSERT INTO `bookrecomendation` (`bookrecomendation_id`, `member_id`, `type`, `title`, `author`, `version`, `publisher`, `publication_year`, `date`) VALUES
@@ -76,7 +78,7 @@ INSERT INTO `bookrecomendation` (`bookrecomendation_id`, `member_id`, `type`, `t
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `booktype`
+-- Table structure for table `booktype`
 --
 
 CREATE TABLE `booktype` (
@@ -85,7 +87,7 @@ CREATE TABLE `booktype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `booktype`
+-- Dumping data for table `booktype`
 --
 
 INSERT INTO `booktype` (`booktype_id`, `booktype_name`) VALUES
@@ -96,7 +98,7 @@ INSERT INTO `booktype` (`booktype_id`, `booktype_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `guestbook`
+-- Table structure for table `guestbook`
 --
 
 CREATE TABLE `guestbook` (
@@ -107,7 +109,7 @@ CREATE TABLE `guestbook` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `guestbook`
+-- Dumping data for table `guestbook`
 --
 
 INSERT INTO `guestbook` (`guestbook_id`, `member_id`, `date`, `time`) VALUES
@@ -225,7 +227,7 @@ INSERT INTO `guestbook` (`guestbook_id`, `member_id`, `date`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `member`
+-- Table structure for table `member`
 --
 
 CREATE TABLE `member` (
@@ -239,7 +241,7 @@ CREATE TABLE `member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `member`
+-- Dumping data for table `member`
 --
 
 INSERT INTO `member` (`member_id`, `id_number`, `name`, `sex`, `occupation`, `instance`, `address`) VALUES
@@ -265,7 +267,7 @@ INSERT INTO `member` (`member_id`, `id_number`, `name`, `sex`, `occupation`, `in
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `occupation`
+-- Table structure for table `occupation`
 --
 
 CREATE TABLE `occupation` (
@@ -274,7 +276,7 @@ CREATE TABLE `occupation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `occupation`
+-- Dumping data for table `occupation`
 --
 
 INSERT INTO `occupation` (`occupation_id`, `occupation_name`) VALUES
@@ -289,7 +291,7 @@ INSERT INTO `occupation` (`occupation_id`, `occupation_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `token`
+-- Table structure for table `token`
 --
 
 CREATE TABLE `token` (
@@ -301,7 +303,7 @@ CREATE TABLE `token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `token`
+-- Dumping data for table `token`
 --
 
 INSERT INTO `token` (`token_id`, `token`, `salt`, `email`, `time`) VALUES
@@ -364,51 +366,59 @@ ALTER TABLE `token`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `bookrecomendation`
 --
 ALTER TABLE `bookrecomendation`
   MODIFY `bookrecomendation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `booktype`
 --
 ALTER TABLE `booktype`
   MODIFY `booktype_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `guestbook`
 --
 ALTER TABLE `guestbook`
   MODIFY `guestbook_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
+
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
   MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- AUTO_INCREMENT for table `occupation`
 --
 ALTER TABLE `occupation`
   MODIFY `occupation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `token`
 --
 ALTER TABLE `token`
   MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `bookrecomendation`
+-- Constraints for table `bookrecomendation`
 --
 ALTER TABLE `bookrecomendation`
   ADD CONSTRAINT `fk_member_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `guestbook`
+-- Constraints for table `guestbook`
 --
 ALTER TABLE `guestbook`
   ADD CONSTRAINT `fk_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`member_id`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
