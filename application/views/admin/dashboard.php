@@ -465,9 +465,9 @@
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
+            <form role="form" action="" method="get">
             <div class="box-body no-padding">
               <!-- Date -->
-              <form role="form" action="" method="get">
               <div class="form-group has-feedback">
                 <div class="col-md-10">
                   <label>Tanggal</label>
@@ -477,7 +477,9 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" name="date" class="form-control pull-right" id="reservation" value="<?php echo $date; ?>">
+                    <input type="text" class="form-control pull-right" id="reservation" value="<?php echo $date; ?>">
+                    <input type="hidden" name="start" value="<?php echo $startt; ?>">
+                    <input type="hidden" name="end" value="<?php echo $endd; ?>">
                     <div class="input-group-addon">
                       <button type="submit" class="btn btn-info badge btn-sm mt-1">Lihat</button>
                       <a href="<?php echo site_url('Dashboard') ?>" class="btn btn-default btn-sm badge mt-1">Reset</a>
@@ -544,7 +546,7 @@
                         "drilldown": {
                             "series": [
                                 <?php foreach ($data_guestbookoccuptaion as $key => $row) {
-                                $guestbookoccupation=$this->Guestbook_model->data_occupationandinstance($dates, $row->occupation);
+                                $guestbookoccupation=$this->Guestbook_model->data_occupationandinstance($start, $end, $row->occupation);
                                 $string = '{
                                     "name":"'.$row->occupation.'",
                                     "colorByPoint": true,
@@ -604,7 +606,9 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" name="date1" class="form-control pull-right" id="reservation1" value="<?php echo $date1; ?>">
+                    <input type="text" class="form-control pull-right" id="reservation1" value="<?php echo $date1; ?>">
+                    <input type="hidden" name="start1" value="<?php echo $start1; ?>">
+                    <input type="hidden" name="end1" value="<?php echo $end1; ?>">
                     <div class="input-group-addon">
                       <button type="submit" class="btn btn-warning badge btn-sm mt-1">Lihat</button>
                       <a href="<?php echo site_url('Dashboard') ?>" class="btn btn-default btn-sm badge mt-1">Reset</a>
@@ -673,7 +677,7 @@
                         "drilldown": {
                             "series": [
                                 <?php foreach ($data_booktype as $key => $row) {
-                                $recomendationtitle=$this->Bookrecomendation_model->booktitle_by_type($dates1, $row->type);
+                                $recomendationtitle=$this->Bookrecomendation_model->booktitle_by_type($start1, $end1, $row->type);
                                 $string = '{
                                     "name":"'.$row->type.'",
                                     "colorByPoint": true,
@@ -795,16 +799,46 @@
 <script>
   $(function () {
     //Date range picker
+    function cb(start, end) {
+      $('[name="start"]').val(start.format('DD-MM-YYYY'));
+      $('[name="end"]').val(end.format('DD-MM-YYYY'));
+    }
     $('#reservation').daterangepicker({
         locale: {
             format: 'DD-MMM-YYYY'
-        }
-    })
+        },
+        ranges: {
+           'Hari ini': [moment(), moment()],
+           'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           '7 Hari terakhir': [moment().subtract(6, 'days'), moment()],
+           '30 Hari terakhir': [moment().subtract(30, 'days'), moment()],
+           'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+           'Bulan Lalu': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        autoApply: true,
+        drops: "down"
+    }, cb)
+
+    function cb1(start, end) {
+      $('[name="start1"]').val(start.format('DD-MM-YYYY'));
+      $('[name="end1"]').val(end.format('DD-MM-YYYY'));
+    }
     $('#reservation1').daterangepicker({
         locale: {
             format: 'DD-MMM-YYYY'
-        }
-    })
+        },
+        ranges: {
+           'Hari ini': [moment(), moment()],
+           'Kemarin': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           '7 Hari terakhir': [moment().subtract(6, 'days'), moment()],
+           '30 Hari terakhir': [moment().subtract(30, 'days'), moment()],
+           'Bulan ini': [moment().startOf('month'), moment().endOf('month')],
+           'Bulan Lalu': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        autoApply: true,
+        drops: "up"
+    }, cb1)
+
     $('#container_thisweek').show();
     $('#container_lastweek').hide();
     $('#container_twoweekago').hide();

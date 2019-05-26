@@ -32,7 +32,7 @@
             </div>
             <div class="form-group has-feedback">
                 <select class="form-control select2" name="type" style="width: 100%;" required>
-                    <option value="" disabled selected hidden>Jenis Buku</option>
+                    <option></option>
                     <?php foreach ($data_booktype as $key => $row) {?>
                     <option value="<?php echo $row->booktype_name; ?>" ><?php echo $row->booktype_name; ?></option>
                     <?php } ?>
@@ -85,7 +85,9 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').select2({
+        placeholder: "Jenis buku"
+      })
 
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',

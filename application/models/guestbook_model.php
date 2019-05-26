@@ -103,10 +103,8 @@
 			return $this->db->get($this->nama_table)->row();
 		}
 
-		function data_occupation($date)
+		function data_occupation($start, $end)
 		{
-			$start = substr($date, 0, 10);
-			$end = substr($date, 13, 10);
 			$this->db->select("COUNT(guestbook.guestbook_id) AS total, guestbook.date, member.occupation");
 			$this->db->from($this->nama_table);
 			$this->db->join('member', 'member.member_id=guestbook.member_id');
@@ -116,10 +114,8 @@
 			return $this->db->get()->result();
 		}
 
-		function data_occupationandinstance($date, $occupation)
+		function data_occupationandinstance($start, $end, $occupation)
 		{
-			$start = substr($date, 0, 10);
-			$end = substr($date, 13, 10);
 			$this->db->select("COUNT(guestbook.guestbook_id) AS total, guestbook.date, member.occupation, member.instance");
 			$this->db->from($this->nama_table);
 			$this->db->join('member', 'member.member_id=guestbook.member_id');

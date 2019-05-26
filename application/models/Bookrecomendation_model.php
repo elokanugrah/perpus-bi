@@ -49,10 +49,8 @@
 			return $this->db->get($this->nama_table)->row();
 		}
 
-		function data_booktype($date)
+		function data_booktype($start, $end)
 		{
-			$start = substr($date, 0, 10);
-			$end = substr($date, 13, 10);
 			$this->db->select("COUNT(bookrecomendation_id) AS total, type");
 			$this->db->from($this->nama_table);
 			$this->db->where('date >=', $start);
@@ -61,10 +59,8 @@
 			return $this->db->get()->result();
 		}
 
-		function booktitle_by_type($date, $type)
+		function booktitle_by_type($start, $end, $type)
 		{
-			$start = substr($date, 0, 10);
-			$end = substr($date, 13, 10);
 			$this->db->select("COUNT(bookrecomendation_id) AS total, date, type, title");
 			$this->db->from($this->nama_table);
 			$this->db->where('date >=', $start);

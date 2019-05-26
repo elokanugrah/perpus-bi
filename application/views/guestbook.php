@@ -74,7 +74,7 @@
   ?>
   <div class="form-group has-feedback">
     <select class="form-control select2" name="occupation" style="width: 100%;" required>
-        <option value="" disabled selected hidden>Status</option>
+        <option></option>
         <?php foreach ($occupation as $key => $row) {?>
         <option value="<?php echo $row->occupation_name; ?>" ><?php echo $row->occupation_name; ?></option>
         <?php } ?>
@@ -110,7 +110,9 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').select2({
+      placeholder: "Status"
+    })
 
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
